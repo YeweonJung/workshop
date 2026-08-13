@@ -7,6 +7,7 @@
 <style>
 :root{--ink:#17212b;--muted:#607080;--paper:#f6f3ed;--card:#fff;--line:#d9d4cb;--nav:#102631;--blue:#236b8e;--red:#b64b3b;--green:#31735a;--amber:#b8761b;--code:#12222c;--code2:#19313e;--shadow:0 12px 36px rgba(23,33,43,.09)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.72;word-break:keep-all}a{color:inherit}.top{position:fixed;left:0;right:0;top:0;height:5px;background:linear-gradient(90deg,var(--blue),var(--green),var(--amber));z-index:30}.layout{display:grid;grid-template-columns:290px minmax(0,1fr);min-height:100vh}.side{position:sticky;top:0;height:100vh;background:var(--nav);color:#e8f0f2;padding:28px 22px;overflow:auto}.brand{font-size:12px;letter-spacing:.14em;color:#8db8c8;text-transform:uppercase}.side h1{font-size:22px;line-height:1.35;margin:10px 0 22px}.search{width:100%;border:1px solid #35515e;border-radius:10px;background:#183744;color:#fff;padding:11px 12px;margin-bottom:18px}.nav a{display:block;text-decoration:none;color:#c9d7dc;padding:7px 8px;border-left:2px solid transparent;font-size:14px}.nav a:hover,.nav a.active{color:#fff;border-color:#72bdd4;background:#173642}.side-note{font-size:12px;color:#8da5af;border-top:1px solid #29434e;margin-top:22px;padding-top:16px}.main{max-width:1120px;width:100%;padding:70px 54px 100px;margin:auto}.hero{padding:54px 0 48px;border-bottom:1px solid var(--line)}.eyebrow{font-size:13px;color:var(--blue);font-weight:800;letter-spacing:.08em}.hero h2{font-family:Georgia,"Noto Serif KR",serif;font-size:54px;line-height:1.16;margin:12px 0 18px;letter-spacing:-.035em}.hero p{max-width:820px;font-size:19px;color:#43515d}.hero-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}.hero-grid div{background:var(--card);border:1px solid var(--line);padding:16px;border-radius:12px}.hero-grid strong{display:block;color:var(--blue);font-size:14px}.hero-grid span{font-size:14px;color:var(--muted)}section{padding:58px 0;border-bottom:1px solid var(--line)}h2{font-family:Georgia,"Noto Serif KR",serif;font-size:36px;line-height:1.25;margin:0 0 14px;letter-spacing:-.025em}h3{font-size:24px;margin:34px 0 10px}h4{font-size:18px;margin:24px 0 6px}.lead{font-size:18px;color:#46545e;max-width:900px}.ppt{display:inline-flex;align-items:center;background:#e7eef1;color:#31566a;font-weight:700;font-size:12px;border-radius:999px;padding:4px 9px;margin-bottom:10px}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:22px 0}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:21px;box-shadow:0 3px 12px rgba(23,33,43,.04)}.card h3,.card h4{margin-top:0}.why{border-left:5px solid var(--amber);background:#fff8e9;padding:17px 20px;margin:20px 0;border-radius:0 12px 12px 0}.answer{border-left:5px solid var(--green);background:#edf7f2;padding:17px 20px;margin:20px 0;border-radius:0 12px 12px 0}.warn{border-left:5px solid var(--red);background:#fff0ed;padding:17px 20px;margin:20px 0;border-radius:0 12px 12px 0}.formula{font-family:Cambria,Georgia,serif;background:#eef3f5;padding:14px 18px;border-radius:10px;font-size:18px;overflow:auto}.compare{width:100%;border-collapse:collapse;background:#fff;margin:18px 0;font-size:14px}.compare th,.compare td{border:1px solid var(--line);padding:12px 13px;text-align:left;vertical-align:top}.compare th{background:#e9eff1;color:#274a5a}.pill{display:inline-block;border:1px solid #a7bec8;color:#31566a;border-radius:999px;padding:2px 8px;font-size:12px;margin:2px}.steps{counter-reset:step}.step{display:grid;grid-template-columns:42px 1fr;gap:14px;margin:16px 0}.step:before{counter-increment:step;content:counter(step);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--nav);color:#fff;font-weight:800}.code-card{background:var(--code);color:#e8f1f4;border-radius:14px;overflow:hidden;margin:22px 0;box-shadow:var(--shadow)}.code-head{display:flex;justify-content:space-between;align-items:center;padding:13px 16px;background:#0d1a21;color:#d8e7eb}.copy{border:1px solid #496777;background:#19313e;color:#e8f1f4;border-radius:8px;padding:6px 10px;cursor:pointer}.code-grid{overflow:auto;max-height:760px}.code-row{display:grid;grid-template-columns:46px minmax(480px,1.25fr) minmax(260px,.75fr);border-top:1px solid rgba(255,255,255,.04);min-width:850px}.code-row.explained{background:var(--code2)}.ln{color:#7190a0;text-align:right;padding:5px 12px 5px 0;user-select:none}.code-row code{white-space:pre;padding:5px 14px;color:#e8f1f4;font-family:Consolas,"D2Coding",monospace;font-size:13px}.line-note{padding:5px 14px;border-left:1px solid #395361;color:#b9ced6;font-size:13px}.decision{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0}.decision article{background:#fff;border-top:5px solid var(--blue);padding:18px;border-radius:12px;box-shadow:var(--shadow)}.decision article:nth-child(2){border-color:var(--red)}.decision article:nth-child(3){border-color:var(--green)}details{background:#fff;border:1px solid var(--line);border-radius:10px;margin:10px 0;padding:0 15px}summary{cursor:pointer;font-weight:800;padding:14px 0}details p{margin-top:0}.glossary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.term{background:#fff;border:1px solid var(--line);border-radius:10px;padding:13px 15px}.term strong{color:var(--blue)}.hidden{display:none!important}.footer{padding:38px 0;color:var(--muted);font-size:13px}.progress{position:fixed;top:5px;left:0;height:3px;background:#fff;z-index:40;width:0}.back{position:fixed;right:20px;bottom:20px;border:0;background:var(--nav);color:white;width:44px;height:44px;border-radius:50%;cursor:pointer;box-shadow:var(--shadow)}@media(max-width:900px){.layout{display:block}.side{position:relative;height:auto}.nav{columns:2}.main{padding:42px 22px}.hero h2{font-size:39px}.hero-grid,.cards,.decision,.glossary{grid-template-columns:1fr}.code-row{grid-template-columns:40px minmax(470px,1fr);}.line-note{grid-column:2;border-left:0;color:#a9c4ce;padding-top:0}.hero{padding-top:28px}}@media print{.side,.back,.top,.progress,.copy{display:none}.layout{display:block}.main{max-width:none;padding:0 20px}.code-grid{max-height:none}.code-card{break-inside:avoid;box-shadow:none}section{break-before:page}}
+.experiment{margin:34px 0 8px;padding:24px;background:#f0f6f8;border:1px solid #c8d8df;border-radius:14px}.experiment h3{margin-top:0}.experiment h4{color:#274a5a}.edit-table{width:100%;border-collapse:collapse;background:#fff;margin:16px 0;font-size:14px}.edit-table th,.edit-table td{border:1px solid var(--line);padding:11px 12px;text-align:left;vertical-align:top}.edit-table th{background:#dfecef;color:#274a5a}.tune-code{margin:0;padding:18px;overflow:auto;white-space:pre;line-height:1.55;color:#e8f1f4;background:var(--code);font-family:Consolas,"D2Coding",monospace;font-size:13px}.tune-card{margin-bottom:16px}.checklist{background:#fff;border:1px dashed #9fb8c3;border-radius:10px;padding:14px 18px}.checklist li{margin:5px 0}
 </style>
 </head>
 <body>
@@ -144,7 +145,85 @@ print(&amp;#x27;1) 두 모델 모두 BMI와 결과의 비선형 관계를 보여
 print(&amp;#x27;2) 관계의 전체적인 추세를 설명하기에는 어느 곡선이 더 읽기 쉬운가?&amp;#x27;)
 print(&amp;#x27;3) EBM의 계단형 변화가 실제 임상적 임계점인지, 표본 변동인지 어떻게 확인할 것인가?&amp;#x27;)">코드 복사</button></div>
       <div class="code-grid"><div class="code-row explained"><span class="ln">1</span><code>from pygam import LinearGAM, s</code><span class="line-note">pyGAM에서 연속형 결과용 LinearGAM과 spline 항 s를 불러온다.</span></div><div class="code-row explained"><span class="ln">2</span><code>from interpret.glassbox import ExplainableBoostingRegressor</code><span class="line-note">InterpretML의 설명 가능한 부스팅 회귀모형을 불러온다.</span></div><div class="code-row"><span class="ln">3</span><code>&nbsp;</code><span class="line-note"></span></div><div class="code-row"><span class="ln">4</span><code># GAM: 변수별 smooth function의 합</code><span class="line-note"></span></div><div class="code-row explained"><span class="ln">5</span><code>terms = s(0)</code><span class="line-note">첫 번째 변수 age에 대한 spline 항으로 식을 시작한다.</span></div><div class="code-row explained"><span class="ln">6</span><code>for j in range(1, X.shape[1]):</code><span class="line-note">나머지 9개 변수도 한 개씩 식에 추가한다.</span></div><div class="code-row explained"><span class="ln">7</span><code>    terms += s(j)</code><span class="line-note">결과적으로 10개 변수별 곡선의 합이 된다.</span></div><div class="code-row"><span class="ln">8</span><code>&nbsp;</code><span class="line-note"></span></div><div class="code-row explained"><span class="ln">9</span><code>gam = LinearGAM(terms, n_splines=8, lam=10.0)</code><span class="line-note">n_splines는 곡선의 세밀함, lam은 과도한 굴곡을 누르는 정도다.</span></div><div class="code-row explained"><span class="ln">10</span><code>gam.fit(X_train.values, y_train.values)</code><span class="line-note">GAM이 학습자료에서 각 변수의 곡선을 학습한다.</span></div><div class="code-row"><span class="ln">11</span><code>&nbsp;</code><span class="line-note"></span></div><div class="code-row"><span class="ln">12</span><code># EBM: 변수별 shape function과 제한된 상호작용</code><span class="line-note"></span></div><div class="code-row explained"><span class="ln">13</span><code>ebm = ExplainableBoostingRegressor(</code><span class="line-note">EBM 모형을 만든다.</span></div><div class="code-row explained"><span class="ln">14</span><code>    interactions=5,</code><span class="line-note">주효과 외에 최대 5개의 상호작용 항을 탐색하게 한다.</span></div><div class="code-row explained"><span class="ln">15</span><code>    n_jobs=1,</code><span class="line-note">병렬 작업 수를 1개로 제한한다.</span></div><div class="code-row"><span class="ln">16</span><code>    random_state=SEED,</code><span class="line-note">동일한 실행 결과를 얻도록 난수를 고정한다.</span></div><div class="code-row explained"><span class="ln">17</span><code>)</code><span class="line-note"></span></div><div class="code-row"><span class="ln">18</span><code>ebm.fit(X_train, y_train)</code><span class="line-note">EBM이 학습자료에서 shape function과 상호작용을 학습한다.</span></div><div class="code-row"><span class="ln">19</span><code>&nbsp;</code><span class="line-note"></span></div><div class="code-row explained"><span class="ln">20</span><code># BMI만 변화시키고 나머지 변수는 학습자료 중앙값으로 고정</code><span class="line-note"></span></div><div class="code-row explained"><span class="ln">21</span><code>bmi_grid = np.linspace(X_train[&#x27;bmi&#x27;].quantile(0.02), X_train[&#x27;bmi&#x27;].quantile(0.98), 150)</code><span class="line-note">학습자료에서 관찰된 BMI의 중앙 96% 범위를 150개 점으로 만든다.</span></div><div class="code-row"><span class="ln">22</span><code>X_bmi = pd.DataFrame(</code><span class="line-note"></span></div><div class="code-row"><span class="ln">23</span><code>    np.tile(X_train.median().values, (len(bmi_grid), 1)),</code><span class="line-note"></span></div><div class="code-row"><span class="ln">24</span><code>    columns=X.columns,</code><span class="line-note"></span></div><div class="code-row explained"><span class="ln">25</span><code>)</code><span class="line-note">비교용 가상 환자 자료를 만든다.</span></div><div class="code-row"><span class="ln">26</span><code>X_bmi[&#x27;bmi&#x27;] = bmi_grid</code><span class="line-note">가상 환자들의 BMI만 순서대로 바꾼다.</span></div><div class="code-row explained"><span class="ln">27</span><code>&nbsp;</code><span class="line-note"></span></div><div class="code-row explained"><span class="ln">28</span><code>pred_gam_curve = gam.predict(X_bmi.values)</code><span class="line-note">GAM이 각 BMI 값에서 예측한 질병 진행도를 계산한다.</span></div><div class="code-row"><span class="ln">29</span><code>pred_ebm_curve = ebm.predict(X_bmi)</code><span class="line-note">EBM도 같은 가상 환자에게 예측한다.</span></div><div class="code-row"><span class="ln">30</span><code>&nbsp;</code><span class="line-note"></span></div><div class="code-row explained"><span class="ln">31</span><code>fig, ax = plt.subplots(figsize=(10, 6))</code><span class="line-note"></span></div><div class="code-row explained"><span class="ln">32</span><code>ax.scatter(X_train[&#x27;bmi&#x27;], y_train, s=18, alpha=0.22, color=&#x27;gray&#x27;, label=&#x27;학습 환자&#x27;)</code><span class="line-note">회색 점은 실제 학습 환자다. 점이 적은 구간은 해석을 조심한다.</span></div><div class="code-row explained"><span class="ln">33</span><code>ax.plot(bmi_grid, pred_gam_curve, linewidth=3, color=&#x27;#1976D2&#x27;, label=&#x27;GAM&#x27;)</code><span class="line-note">파란선은 GAM의 매끄러운 관계다.</span></div><div class="code-row"><span class="ln">34</span><code>ax.plot(bmi_grid, pred_ebm_curve, linewidth=3, color=&#x27;#D32F2F&#x27;, label=&#x27;EBM&#x27;)</code><span class="line-note">빨간선은 EBM의 계단형 관계다.</span></div><div class="code-row"><span class="ln">35</span><code>ax.set_title(&#x27;BMI 변화에 따른 질병 진행도 예측곡선&#x27;)</code><span class="line-note"></span></div><div class="code-row"><span class="ln">36</span><code>ax.set_xlabel(&#x27;BMI (표준화 값)&#x27;)</code><span class="line-note"></span></div><div class="code-row"><span class="ln">37</span><code>ax.set_ylabel(&#x27;예측 질병 진행도&#x27;)</code><span class="line-note"></span></div><div class="code-row"><span class="ln">38</span><code>ax.legend()</code><span class="line-note"></span></div><div class="code-row"><span class="ln">39</span><code>ax.grid(alpha=0.2)</code><span class="line-note"></span></div><div class="code-row"><span class="ln">40</span><code>plt.tight_layout()</code><span class="line-note"></span></div><div class="code-row"><span class="ln">41</span><code>plt.show()</code><span class="line-note"></span></div><div class="code-row explained"><span class="ln">42</span><code>&nbsp;</code><span class="line-note">그래프만 보고 끝내지 않고 세 가지 해석 질문을 출력한다.</span></div><div class="code-row"><span class="ln">43</span><code>print(&#x27;해석 질문&#x27;)</code><span class="line-note"></span></div><div class="code-row"><span class="ln">44</span><code>print(&#x27;1) 두 모델 모두 BMI와 결과의 비선형 관계를 보여주는가?&#x27;)</code><span class="line-note"></span></div><div class="code-row"><span class="ln">45</span><code>print(&#x27;2) 관계의 전체적인 추세를 설명하기에는 어느 곡선이 더 읽기 쉬운가?&#x27;)</code><span class="line-note"></span></div><div class="code-row"><span class="ln">46</span><code>print(&#x27;3) EBM의 계단형 변화가 실제 임상적 임계점인지, 표본 변동인지 어떻게 확인할 것인가?&#x27;)</code><span class="line-note"></span></div></div>
-    </div><h3>그래프를 어떻게 읽나</h3><div class="steps"><div class="step"><div><b>회색 점의 분포를 본다.</b><br>환자가 거의 없는 BMI 구간의 선 모양은 과하게 해석하지 않는다.</div></div><div class="step"><div><b>두 선의 공통 방향을 본다.</b><br>두 모델 모두 비슷하게 상승하거나 하락한다면 전체 경향에 대한 근거가 상대적으로 강하다.</div></div><div class="step"><div><b>매끄러운 추세와 임계형 변화를 구분한다.</b><br>논문에서 전체 관계를 간결하게 설명하면 GAM, 계단형 변화와 상호작용이 연구 질문이면 EBM을 고려한다.</div></div><div class="step"><div><b>선택의 대가를 말한다.</b><br>GAM은 간결하지만 복잡한 상호작용을 놓칠 수 있고, EBM은 유연하지만 설명 항이 많아질 수 있다.</div></div></div><div class="answer"><strong>이 상황의 정답은 그래프 1등이 아니다.</strong><br>연구 결과로 어떤 설명을 남겨야 하는지가 선택 기준이다.</div></section>
+    </div><h3>그래프를 어떻게 읽나</h3><div class="steps"><div class="step"><div><b>회색 점의 분포를 본다.</b><br>환자가 거의 없는 BMI 구간의 선 모양은 과하게 해석하지 않는다.</div></div><div class="step"><div><b>두 선의 공통 방향을 본다.</b><br>두 모델 모두 비슷하게 상승하거나 하락한다면 전체 경향에 대한 근거가 상대적으로 강하다.</div></div><div class="step"><div><b>매끄러운 추세와 임계형 변화를 구분한다.</b><br>논문에서 전체 관계를 간결하게 설명하면 GAM, 계단형 변화와 상호작용이 연구 질문이면 EBM을 고려한다.</div></div><div class="step"><div><b>선택의 대가를 말한다.</b><br>GAM은 간결하지만 복잡한 상호작용을 놓칠 수 있고, EBM은 유연하지만 설명 항이 많아질 수 있다.</div></div></div><div class="answer"><strong>이 상황의 정답은 그래프 1등이 아니다.</strong><br>연구 결과로 어떤 설명을 남겨야 하는지가 선택 기준이다.</div><div class="experiment"><h3>상황 1 확장 실습: spline과 상호작용을 조금씩 바꿔 보기</h3><p>이 실습의 목적은 가장 높은 점수를 억지로 찾는 것이 아니라, <strong>곡선의 모양이 설정값에 얼마나 민감한지</strong> 확인하는 것입니다. 먼저 기존 셀을 실행해 <code>terms</code>, <code>X_bmi</code>, <code>bmi_grid</code>, <code>pred_gam_curve</code>, <code>pred_ebm_curve</code>를 만든 다음 아래 코드를 실행합니다.</p><div class="why"><strong>가장 중요한 규칙</strong><br>처음에는 숫자를 한 번에 하나만 바꾸세요. 예를 들어 <code>n_splines</code>만 5 → 8 → 15로 바꾸고 나머지는 고정해야 어떤 설정이 곡선을 바꿨는지 알 수 있습니다.</div><table class="edit-table"><tr><th>바꿀 위치</th><th>처음 값</th><th>시험할 값</th><th>값을 키우면</th><th>확인할 것</th></tr><tr><td><code>n_splines=8</code></td><td>8</td><td>5, 8, 15</td><td>표현 가능한 굴곡이 많아집니다.</td><td>중간 구간의 중요한 굴곡이 살아나는지, 표본이 적은 양끝이 불필요하게 흔들리는지</td></tr><tr><td><code>lam=10.0</code></td><td>10</td><td>1, 10, 100</td><td>곡선을 더 강하게 평활화하여 매끄럽게 만듭니다.</td><td><code>lam=1</code>에서 지나치게 출렁이는지, <code>lam=100</code>에서 중요한 굴곡까지 사라지는지</td></tr><tr><td><code>interactions=5</code></td><td>5</td><td>0, 5, 10</td><td>EBM이 더 많은 변수쌍 상호작용을 사용할 수 있습니다.</td><td>성능은 좋아져도 설명이 복잡해지는지, BMI 곡선이 다른 변수의 중앙값 설정에 민감해지는지</td></tr></table><h4>추천 실험 순서</h4><ol><li><code>n_splines</code>만 5, 8, 15로 바꾸고 세 그래프를 비교합니다.</li><li><code>n_splines=8</code>로 되돌린 뒤 <code>lam</code>만 1, 10, 100으로 바꿉니다.</li><li>GAM 비교가 끝나면 EBM의 <code>interactions</code>를 0, 5, 10으로 바꿉니다.</li><li>곡선의 전체 방향이 계속 유지되는 구간과 설정에 따라 달라지는 구간을 구분해 기록합니다.</li></ol><div class="code-card tune-card"><div class="code-head"><strong>상황 1 · 조절값을 위에 모은 비교 코드</strong><button class="copy" data-copy="# 상황 1 확장 실습: 숫자 세 개만 바꾸어 곡선 비교
+from pygam import LinearGAM, s
+from interpret.glassbox import ExplainableBoostingRegressor
+
+# ★ 먼저 아래 세 숫자만 바꿔 본다.
+GAM_N_SPLINES = 8       # 권장 비교값: 5, 8, 15
+GAM_LAM = 10.0          # 권장 비교값: 1.0, 10.0, 100.0
+EBM_INTERACTIONS = 5    # 권장 비교값: 0, 5, 10
+
+terms_tuned = s(0)
+for j in range(1, X.shape[1]):
+    terms_tuned += s(j)
+
+gam_tuned = LinearGAM(
+    terms_tuned,
+    n_splines=GAM_N_SPLINES,
+    lam=GAM_LAM,
+).fit(X_train.values, y_train.values)
+
+ebm_tuned = ExplainableBoostingRegressor(
+    interactions=EBM_INTERACTIONS,
+    n_jobs=1,
+    random_state=SEED,
+).fit(X_train, y_train)
+
+gam_tuned_curve = gam_tuned.predict(X_bmi.values)
+ebm_tuned_curve = ebm_tuned.predict(X_bmi)
+
+fig, ax = plt.subplots(figsize=(10, 6))
+ax.scatter(X_train[&amp;#x27;bmi&amp;#x27;], y_train, s=18, alpha=0.18, color=&amp;#x27;gray&amp;#x27;, label=&amp;#x27;학습 환자&amp;#x27;)
+ax.plot(bmi_grid, pred_gam_curve, &amp;#x27;--&amp;#x27;, color=&amp;#x27;#90CAF9&amp;#x27;, linewidth=2, label=&amp;#x27;기존 GAM&amp;#x27;)
+ax.plot(bmi_grid, gam_tuned_curve, color=&amp;#x27;#1565C0&amp;#x27;, linewidth=3, label=&amp;#x27;조정 GAM&amp;#x27;)
+ax.plot(bmi_grid, pred_ebm_curve, &amp;#x27;--&amp;#x27;, color=&amp;#x27;#EF9A9A&amp;#x27;, linewidth=2, label=&amp;#x27;기존 EBM&amp;#x27;)
+ax.plot(bmi_grid, ebm_tuned_curve, color=&amp;#x27;#C62828&amp;#x27;, linewidth=3, label=&amp;#x27;조정 EBM&amp;#x27;)
+ax.set_title(&amp;#x27;설정 변경 전·후 BMI 예측곡선&amp;#x27;)
+ax.set_xlabel(&amp;#x27;BMI (표준화 값)&amp;#x27;)
+ax.set_ylabel(&amp;#x27;예측 질병 진행도&amp;#x27;)
+ax.legend()
+ax.grid(alpha=0.2)
+plt.show()">코드 복사</button></div><pre class="tune-code"><code># 상황 1 확장 실습: 숫자 세 개만 바꾸어 곡선 비교
+from pygam import LinearGAM, s
+from interpret.glassbox import ExplainableBoostingRegressor
+
+# ★ 먼저 아래 세 숫자만 바꿔 본다.
+GAM_N_SPLINES = 8       # 권장 비교값: 5, 8, 15
+GAM_LAM = 10.0          # 권장 비교값: 1.0, 10.0, 100.0
+EBM_INTERACTIONS = 5    # 권장 비교값: 0, 5, 10
+
+terms_tuned = s(0)
+for j in range(1, X.shape[1]):
+    terms_tuned += s(j)
+
+gam_tuned = LinearGAM(
+    terms_tuned,
+    n_splines=GAM_N_SPLINES,
+    lam=GAM_LAM,
+).fit(X_train.values, y_train.values)
+
+ebm_tuned = ExplainableBoostingRegressor(
+    interactions=EBM_INTERACTIONS,
+    n_jobs=1,
+    random_state=SEED,
+).fit(X_train, y_train)
+
+gam_tuned_curve = gam_tuned.predict(X_bmi.values)
+ebm_tuned_curve = ebm_tuned.predict(X_bmi)
+
+fig, ax = plt.subplots(figsize=(10, 6))
+ax.scatter(X_train['bmi'], y_train, s=18, alpha=0.18, color='gray', label='학습 환자')
+ax.plot(bmi_grid, pred_gam_curve, '--', color='#90CAF9', linewidth=2, label='기존 GAM')
+ax.plot(bmi_grid, gam_tuned_curve, color='#1565C0', linewidth=3, label='조정 GAM')
+ax.plot(bmi_grid, pred_ebm_curve, '--', color='#EF9A9A', linewidth=2, label='기존 EBM')
+ax.plot(bmi_grid, ebm_tuned_curve, color='#C62828', linewidth=3, label='조정 EBM')
+ax.set_title('설정 변경 전·후 BMI 예측곡선')
+ax.set_xlabel('BMI (표준화 값)')
+ax.set_ylabel('예측 질병 진행도')
+ax.legend()
+ax.grid(alpha=0.2)
+plt.show()</code></pre></div><div class="checklist"><strong>결과 기록 예시</strong><ul><li><code>n_splines=15, lam=1</code>: 곡선이 세밀하지만 양끝의 흔들림이 커졌다.</li><li><code>n_splines=8, lam=10</code>: 주요 증가 추세가 유지되고 비교적 안정적이었다.</li><li><code>interactions=10</code>: 평가 성능을 따로 확인해야 하며, 곡선이 복잡해졌다는 이유만으로 더 좋은 설명이라고 할 수 없다.</li></ul></div><div class="warn"><strong>해석 주의</strong><br>이 그래프는 BMI만 바꾸고 다른 변수는 중앙값으로 고정한 조건부 예측곡선입니다. <code>n_splines</code>를 늘려 새로 생긴 꺾임을 임상 임계값이라고 바로 해석하지 마세요. 다른 데이터 분할에서도 같은 위치가 반복되는지 확인해야 합니다.</div></div></section>
 
 <section data-search id="case2"><span class="ppt">PPT 18 · 상황 2</span><h2>12. 상황 2 실습: 신규 환자의 예측오차를 줄인다</h2><p class="lead">설명보다 오차 최소화가 우선이므로 EBM, GBDT, Random Forest를 동일한 평가자료에서 비교합니다.</p><div class="code-card">
       <div class="code-head"><strong>실습 3 · EBM, GBDT, Random Forest 점 예측 비교</strong><button class="copy" data-copy="rf = RandomForestRegressor(
@@ -208,7 +287,97 @@ best_row = point_results.iloc[0]
 print(f&amp;quot;이번 평가분할에서 RMSE가 가장 낮은 모델: {best_row[&amp;#x27;모델&amp;#x27;]} ({best_row[&amp;#x27;RMSE&amp;#x27;]:.2f})&amp;quot;)
 print(&amp;#x27;단, 한 번의 분할 결과만으로 최종 모델을 확정하지 않습니다.&amp;#x27;)">코드 복사</button></div>
       <div class="code-grid"><div class="code-row explained"><span class="ln">1</span><code>rf = RandomForestRegressor(</code><span class="line-note">Random Forest 회귀모형을 만든다.</span></div><div class="code-row explained"><span class="ln">2</span><code>    n_estimators=500,</code><span class="line-note">서로 다른 500개 나무의 예측을 평균한다.</span></div><div class="code-row explained"><span class="ln">3</span><code>    min_samples_leaf=5,</code><span class="line-note">한 잎에 최소 5명이 남도록 해 지나치게 세밀한 분할을 줄인다.</span></div><div class="code-row explained"><span class="ln">4</span><code>    max_features=&#x27;sqrt&#x27;,</code><span class="line-note">각 분할에서 일부 변수만 후보로 보아 나무의 다양성을 만든다.</span></div><div class="code-row"><span class="ln">5</span><code>    random_state=SEED,</code><span class="line-note"></span></div><div class="code-row explained"><span class="ln">6</span><code>    n_jobs=-1,</code><span class="line-note">여러 CPU 코어를 사용해 나무 학습을 빠르게 한다.</span></div><div class="code-row"><span class="ln">7</span><code>)</code><span class="line-note"></span></div><div class="code-row"><span class="ln">8</span><code>&nbsp;</code><span class="line-note"></span></div><div class="code-row explained"><span class="ln">9</span><code>gbdt = HistGradientBoostingRegressor(</code><span class="line-note">오차를 순차적으로 보완하는 GBDT를 만든다.</span></div><div class="code-row explained"><span class="ln">10</span><code>    learning_rate=0.05,</code><span class="line-note">한 번에 조금씩 학습하도록 학습률을 0.05로 둔다.</span></div><div class="code-row explained"><span class="ln">11</span><code>    max_iter=300,</code><span class="line-note">최대 300번 오차 보완을 반복한다.</span></div><div class="code-row explained"><span class="ln">12</span><code>    max_leaf_nodes=15,</code><span class="line-note">한 나무의 복잡도를 잎 15개로 제한한다.</span></div><div class="code-row explained"><span class="ln">13</span><code>    l2_regularization=1.0,</code><span class="line-note">L2 규제로 과도한 적합을 완화한다.</span></div><div class="code-row"><span class="ln">14</span><code>    random_state=SEED,</code><span class="line-note"></span></div><div class="code-row"><span class="ln">15</span><code>)</code><span class="line-note"></span></div><div class="code-row"><span class="ln">16</span><code>&nbsp;</code><span class="line-note"></span></div><div class="code-row explained"><span class="ln">17</span><code>rf.fit(X_train, y_train)</code><span class="line-note">Random Forest가 학습자료를 학습한다.</span></div><div class="code-row explained"><span class="ln">18</span><code>gbdt.fit(X_train, y_train)</code><span class="line-note">GBDT가 같은 학습자료를 학습한다.</span></div><div class="code-row"><span class="ln">19</span><code>&nbsp;</code><span class="line-note"></span></div><div class="code-row"><span class="ln">20</span><code>point_predictions = {</code><span class="line-note"></span></div><div class="code-row explained"><span class="ln">21</span><code>    &#x27;EBM&#x27;: ebm.predict(X_test),</code><span class="line-note">세 모델이 동일한 평가 환자 89명을 예측한다.</span></div><div class="code-row"><span class="ln">22</span><code>    &#x27;GBDT&#x27;: gbdt.predict(X_test),</code><span class="line-note"></span></div><div class="code-row"><span class="ln">23</span><code>    &#x27;Random Forest&#x27;: rf.predict(X_test),</code><span class="line-note"></span></div><div class="code-row"><span class="ln">24</span><code>}</code><span class="line-note"></span></div><div class="code-row"><span class="ln">25</span><code>&nbsp;</code><span class="line-note"></span></div><div class="code-row"><span class="ln">26</span><code>rows = []</code><span class="line-note"></span></div><div class="code-row"><span class="ln">27</span><code>for name, pred in point_predictions.items():</code><span class="line-note"></span></div><div class="code-row explained"><span class="ln">28</span><code>    rows.append({</code><span class="line-note">각 모델의 평가 결과를 목록에 추가한다.</span></div><div class="code-row explained"><span class="ln">29</span><code>        &#x27;모델&#x27;: name,</code><span class="line-note"></span></div><div class="code-row"><span class="ln">30</span><code>        &#x27;RMSE&#x27;: mean_squared_error(y_test, pred) ** 0.5,</code><span class="line-note">RMSE는 큰 오차에 더 큰 불이익을 준다.</span></div><div class="code-row"><span class="ln">31</span><code>        &#x27;MAE&#x27;: mean_absolute_error(y_test, pred),</code><span class="line-note">MAE는 환자 한 명당 평균적으로 얼마나 틀렸는지 보여준다.</span></div><div class="code-row explained"><span class="ln">32</span><code>        &#x27;R²&#x27;: r2_score(y_test, pred),</code><span class="line-note">이 코드는 학습에 쓰지 않은 평가자료에서 예측 R²를 계산한다. 1은 완벽한 예측, 0은 평가자료 평균을 일괄 예측한 수준, 음수는 그 평균 기준보다 오차가 더 큰 경우다.</span></div><div class="code-row explained"><span class="ln">33</span><code>    })</code><span class="line-note"></span></div><div class="code-row explained"><span class="ln">34</span><code>&nbsp;</code><span class="line-note"></span></div><div class="code-row"><span class="ln">35</span><code>point_results = pd.DataFrame(rows).sort_values(&#x27;RMSE&#x27;).reset_index(drop=True)</code><span class="line-note"></span></div><div class="code-row"><span class="ln">36</span><code>best_rmse = point_results[&#x27;RMSE&#x27;].min()</code><span class="line-note"></span></div><div class="code-row explained"><span class="ln">37</span><code>point_results[&#x27;최저 RMSE 대비 차이(%)&#x27;] = (point_results[&#x27;RMSE&#x27;] / best_rmse - 1) * 100</code><span class="line-note">최저 RMSE와의 상대 차이를 백분율로 계산한다.</span></div><div class="code-row"><span class="ln">38</span><code>display(point_results.style.format({</code><span class="line-note"></span></div><div class="code-row explained"><span class="ln">39</span><code>    &#x27;RMSE&#x27;: &#x27;{:.2f}&#x27;,</code><span class="line-note"></span></div><div class="code-row"><span class="ln">40</span><code>    &#x27;MAE&#x27;: &#x27;{:.2f}&#x27;,</code><span class="line-note"></span></div><div class="code-row"><span class="ln">41</span><code>    &#x27;R²&#x27;: &#x27;{:.3f}&#x27;,</code><span class="line-note"></span></div><div class="code-row"><span class="ln">42</span><code>    &#x27;최저 RMSE 대비 차이(%)&#x27;: &#x27;{:.1f}%&#x27;,</code><span class="line-note"></span></div><div class="code-row"><span class="ln">43</span><code>}))</code><span class="line-note"></span></div><div class="code-row"><span class="ln">44</span><code>&nbsp;</code><span class="line-note"></span></div><div class="code-row"><span class="ln">45</span><code>plot_df = point_results.melt(</code><span class="line-note"></span></div><div class="code-row"><span class="ln">46</span><code>    id_vars=&#x27;모델&#x27;, value_vars=[&#x27;RMSE&#x27;, &#x27;MAE&#x27;],</code><span class="line-note"></span></div><div class="code-row"><span class="ln">47</span><code>    var_name=&#x27;평가지표&#x27;, value_name=&#x27;오차&#x27;</code><span class="line-note"></span></div><div class="code-row"><span class="ln">48</span><code>)</code><span class="line-note"></span></div><div class="code-row"><span class="ln">49</span><code>fig, ax = plt.subplots(figsize=(9, 5))</code><span class="line-note"></span></div><div class="code-row"><span class="ln">50</span><code>sns.barplot(data=plot_df, x=&#x27;모델&#x27;, y=&#x27;오차&#x27;, hue=&#x27;평가지표&#x27;, ax=ax, palette=&#x27;Set2&#x27;)</code><span class="line-note"></span></div><div class="code-row explained"><span class="ln">51</span><code>ax.set_title(&#x27;점 예측 후보 모델의 평가 오차&#x27;)</code><span class="line-note">RMSE와 MAE를 막대그래프로 함께 비교한다.</span></div><div class="code-row"><span class="ln">52</span><code>ax.set_xlabel(&#x27;후보 모델&#x27;)</code><span class="line-note"></span></div><div class="code-row"><span class="ln">53</span><code>ax.set_ylabel(&#x27;오차: 낮을수록 좋음&#x27;)</code><span class="line-note"></span></div><div class="code-row"><span class="ln">54</span><code>ax.grid(axis=&#x27;y&#x27;, alpha=0.2)</code><span class="line-note"></span></div><div class="code-row"><span class="ln">55</span><code>plt.tight_layout()</code><span class="line-note"></span></div><div class="code-row"><span class="ln">56</span><code>plt.show()</code><span class="line-note"></span></div><div class="code-row"><span class="ln">57</span><code>&nbsp;</code><span class="line-note"></span></div><div class="code-row"><span class="ln">58</span><code>best_row = point_results.iloc[0]</code><span class="line-note"></span></div><div class="code-row"><span class="ln">59</span><code>print(f&quot;이번 평가분할에서 RMSE가 가장 낮은 모델: {best_row[&#x27;모델&#x27;]} ({best_row[&#x27;RMSE&#x27;]:.2f})&quot;)</code><span class="line-note"></span></div><div class="code-row"><span class="ln">60</span><code>print(&#x27;단, 한 번의 분할 결과만으로 최종 모델을 확정하지 않습니다.&#x27;)</code><span class="line-note"></span></div></div>
-    </div><h3>결과표를 어떻게 읽나</h3><ol><li>RMSE와 MAE가 모두 낮은 모델을 찾는다.</li><li>1위와 다른 모델의 차이가 실제로 큰지 ‘최저 RMSE 대비 차이(%)’를 본다.</li><li>차이가 작다면 변수별 설명이 가능한 EBM을 고려한다.</li><li>나무 앙상블의 이점이 뚜렷하다면 예측 성능을 위해 GBDT 또는 Random Forest를 선택한다.</li><li>한 번의 분할 결과는 최종 결론이 아니다. 실제 연구에서는 교차검증과 외부검증이 필요하다.</li></ol><div class="why"><strong>왜 5%를 절대 기준으로 쓰지 않나?</strong><br>허용 가능한 오차는 연구 맥락마다 다릅니다. 5%는 토론을 돕는 임시 기준일 뿐 통계적 법칙이 아닙니다.</div></section>
+    </div><h3>결과표를 어떻게 읽나</h3><ol><li>RMSE와 MAE가 모두 낮은 모델을 찾는다.</li><li>1위와 다른 모델의 차이가 실제로 큰지 ‘최저 RMSE 대비 차이(%)’를 본다.</li><li>차이가 작다면 변수별 설명이 가능한 EBM을 고려한다.</li><li>나무 앙상블의 이점이 뚜렷하다면 예측 성능을 위해 GBDT 또는 Random Forest를 선택한다.</li><li>한 번의 분할 결과는 최종 결론이 아니다. 실제 연구에서는 교차검증과 외부검증이 필요하다.</li></ol><div class="why"><strong>왜 5%를 절대 기준으로 쓰지 않나?</strong><br>허용 가능한 오차는 연구 맥락마다 다릅니다. 5%는 토론을 돕는 임시 기준일 뿐 통계적 법칙이 아닙니다.</div><div class="experiment"><h3>상황 2 확장 실습: 나무 모델의 복잡도를 조금씩 바꿔 보기</h3><p>상황 2에서는 곡선 모양보다 <strong>처음 보는 환자에서의 예측오차</strong>가 중요합니다. 설정을 바꿀 때마다 평가자료(<code>X_test</code>)를 보면 평가자료에 맞춰 선택하게 되므로, 후보 비교에는 보정자료(<code>X_cal</code>)를 사용하고 평가자료는 마지막에 한 번만 확인합니다.</p><table class="edit-table"><tr><th>모델·바꿀 위치</th><th>시험할 값</th><th>의미</th><th>주의할 점</th></tr><tr><td>GBDT <code>learning_rate</code></td><td>0.03, 0.05, 0.10</td><td>나무 하나가 보정하는 크기입니다. 작으면 더 천천히 학습합니다.</td><td>작게 했으면 보통 <code>max_iter</code>를 늘려야 합니다.</td></tr><tr><td>GBDT <code>max_iter</code></td><td>100, 300, 500</td><td>순서대로 추가하는 나무의 수입니다.</td><td>무조건 늘리면 학습자료에 과적합할 수 있습니다.</td></tr><tr><td>GBDT <code>max_leaf_nodes</code></td><td>7, 15, 31</td><td>나무 한 개가 만들 수 있는 말단 구역 수입니다.</td><td>클수록 복잡한 상호작용을 표현하지만 작은 표본에는 불안정할 수 있습니다.</td></tr><tr><td>GBDT <code>l2_regularization</code></td><td>0, 1, 10</td><td>극단적인 보정을 누르는 규제입니다.</td><td>너무 크면 필요한 패턴까지 약해질 수 있습니다.</td></tr><tr><td>RF <code>n_estimators</code></td><td>100, 300, 500</td><td>평균할 나무의 수입니다.</td><td>많아지면 주로 안정성이 좋아지지만 계산시간도 늘어납니다.</td></tr><tr><td>RF <code>max_depth</code></td><td>4, 6, <code>None</code></td><td>나무가 자랄 수 있는 최대 깊이입니다.</td><td><code>None</code>은 끝까지 자랄 수 있어 과적합 위험이 큽니다.</td></tr><tr><td>RF <code>min_samples_leaf</code></td><td>1, 3, 5, 10</td><td>마지막 잎 하나에 필요한 최소 환자 수입니다.</td><td>크게 하면 예측이 부드럽고 안정적이지만 세밀한 패턴은 줄어듭니다.</td></tr><tr><td>RF <code>max_features</code></td><td>0.5, 0.7, 1.0</td><td>각 분할에서 후보로 보는 변수의 비율입니다.</td><td>작으면 나무 간 다양성이 커지지만 중요한 변수를 놓칠 수 있습니다.</td></tr></table><h4>처음 해볼 네 후보</h4><p>아래 코드는 모든 조합을 무작정 검색하지 않고, 기본형과 조금 더 규제한 후보 네 개만 비교합니다. 워크숍에서는 이 표의 숫자를 한두 개씩 고치며 결과가 어떻게 바뀌는지 관찰하는 것이 좋습니다.</p><div class="code-card tune-card"><div class="code-head"><strong>상황 2 · 보정자료로 후보 설정 비교</strong><button class="copy" data-copy="# 상황 2 확장 실습: 보정자료에서 후보 설정 비교
+from sklearn.ensemble import RandomForestRegressor, HistGradientBoostingRegressor
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+
+candidates = {
+    &amp;#x27;GBDT_기본&amp;#x27;: HistGradientBoostingRegressor(
+        learning_rate=0.10, max_iter=100, max_leaf_nodes=31,
+        l2_regularization=0.0, random_state=SEED
+    ),
+    &amp;#x27;GBDT_천천히&amp;#x27;: HistGradientBoostingRegressor(
+        learning_rate=0.05, max_iter=300, max_leaf_nodes=15,
+        l2_regularization=1.0, random_state=SEED
+    ),
+    &amp;#x27;RF_기본&amp;#x27;: RandomForestRegressor(
+        n_estimators=300, max_depth=None, min_samples_leaf=1,
+        max_features=1.0, n_jobs=1, random_state=SEED
+    ),
+    &amp;#x27;RF_규제&amp;#x27;: RandomForestRegressor(
+        n_estimators=500, max_depth=6, min_samples_leaf=5,
+        max_features=0.7, n_jobs=1, random_state=SEED
+    ),
+}
+
+tuning_rows = []
+for name, model in candidates.items():
+    model.fit(X_train, y_train)
+    pred_cal = model.predict(X_cal)  # ★ 설정 선택은 평가자료가 아니라 보정자료에서
+    tuning_rows.append({
+        &amp;#x27;후보&amp;#x27;: name,
+        &amp;#x27;RMSE&amp;#x27;: mean_squared_error(y_cal, pred_cal) ** 0.5,
+        &amp;#x27;MAE&amp;#x27;: mean_absolute_error(y_cal, pred_cal),
+        &amp;#x27;R²&amp;#x27;: r2_score(y_cal, pred_cal),
+    })
+
+tuning_results = pd.DataFrame(tuning_rows).sort_values(&amp;#x27;RMSE&amp;#x27;)
+display(tuning_results.style.format({&amp;#x27;RMSE&amp;#x27;:&amp;#x27;{:.2f}&amp;#x27;, &amp;#x27;MAE&amp;#x27;:&amp;#x27;{:.2f}&amp;#x27;, &amp;#x27;R²&amp;#x27;:&amp;#x27;{:.3f}&amp;#x27;}))
+
+# 표를 보고 한 후보를 선택한 뒤, 마지막에만 X_test에서 한 번 평가한다.
+selected_name = tuning_results.iloc[0][&amp;#x27;후보&amp;#x27;]
+selected_model = candidates[selected_name]
+test_pred = selected_model.predict(X_test)
+
+print(&amp;#x27;선택된 후보:&amp;#x27;, selected_name)
+print(&amp;#x27;최종 평가 RMSE:&amp;#x27;, mean_squared_error(y_test, test_pred) ** 0.5)
+print(&amp;#x27;최종 평가 MAE:&amp;#x27;, mean_absolute_error(y_test, test_pred))
+print(&amp;#x27;최종 평가 R²:&amp;#x27;, r2_score(y_test, test_pred))">코드 복사</button></div><pre class="tune-code"><code># 상황 2 확장 실습: 보정자료에서 후보 설정 비교
+from sklearn.ensemble import RandomForestRegressor, HistGradientBoostingRegressor
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+
+candidates = {
+    'GBDT_기본': HistGradientBoostingRegressor(
+        learning_rate=0.10, max_iter=100, max_leaf_nodes=31,
+        l2_regularization=0.0, random_state=SEED
+    ),
+    'GBDT_천천히': HistGradientBoostingRegressor(
+        learning_rate=0.05, max_iter=300, max_leaf_nodes=15,
+        l2_regularization=1.0, random_state=SEED
+    ),
+    'RF_기본': RandomForestRegressor(
+        n_estimators=300, max_depth=None, min_samples_leaf=1,
+        max_features=1.0, n_jobs=1, random_state=SEED
+    ),
+    'RF_규제': RandomForestRegressor(
+        n_estimators=500, max_depth=6, min_samples_leaf=5,
+        max_features=0.7, n_jobs=1, random_state=SEED
+    ),
+}
+
+tuning_rows = []
+for name, model in candidates.items():
+    model.fit(X_train, y_train)
+    pred_cal = model.predict(X_cal)  # ★ 설정 선택은 평가자료가 아니라 보정자료에서
+    tuning_rows.append({
+        '후보': name,
+        'RMSE': mean_squared_error(y_cal, pred_cal) ** 0.5,
+        'MAE': mean_absolute_error(y_cal, pred_cal),
+        'R²': r2_score(y_cal, pred_cal),
+    })
+
+tuning_results = pd.DataFrame(tuning_rows).sort_values('RMSE')
+display(tuning_results.style.format({'RMSE':'{:.2f}', 'MAE':'{:.2f}', 'R²':'{:.3f}'}))
+
+# 표를 보고 한 후보를 선택한 뒤, 마지막에만 X_test에서 한 번 평가한다.
+selected_name = tuning_results.iloc[0]['후보']
+selected_model = candidates[selected_name]
+test_pred = selected_model.predict(X_test)
+
+print('선택된 후보:', selected_name)
+print('최종 평가 RMSE:', mean_squared_error(y_test, test_pred) ** 0.5)
+print('최종 평가 MAE:', mean_absolute_error(y_test, test_pred))
+print('최종 평가 R²:', r2_score(y_test, test_pred))</code></pre></div><div class="checklist"><strong>표를 읽는 순서</strong><ol><li>먼저 보정자료의 RMSE가 작은 후보를 찾습니다.</li><li>RMSE 차이가 아주 작으면 MAE, 모델 단순성, 실행시간도 함께 봅니다.</li><li>선택한 이유를 먼저 적은 후에만 평가자료 결과를 계산합니다.</li><li>평가자료에서 순위가 달라져도 그 결과를 보고 다시 후보를 고르지 않습니다.</li></ol></div><div class="warn"><strong>숫자 변경의 함정</strong><br><code>learning_rate</code>만 작게 하거나 <code>n_estimators</code>만 크게 하는 식으로 한 숫자만 보고 “좋다”고 판단하지 마세요. 학습률과 반복 수처럼 서로 연결된 설정이 있으며, 442명 자료에서 한 번의 분할 결과는 우연에 민감합니다. 최종 연구에서는 반복 교차검증으로 평균과 변동을 확인해야 합니다.</div></div></section>
 
 <section data-search id="case3"><span class="ppt">PPT 19 · 상황 3</span><h2>13. 상황 3 실습: 예측값과 90% 예측구간을 제시한다</h2><p class="lead">NGBoost는 분포를 직접 예측하고, EBM + Conformal은 설명 가능한 점 예측에 보정 오차를 붙입니다.</p><div class="code-card">
       <div class="code-head"><strong>실습 4 · NGBoost와 EBM + Conformal 예측구간</strong><button class="copy" data-copy="from ngboost import NGBRegressor
@@ -295,7 +464,135 @@ print(&amp;#x27;1) Coverage가 목표 90%에 가까운가?&amp;#x27;)
 print(&amp;#x27;2) Coverage가 비슷할 때 어느 구간이 더 좁은가?&amp;#x27;)
 print(&amp;#x27;3) 환자별로 폭이 달라지는 정보가 연구목적에 필요한가?&amp;#x27;)">코드 복사</button></div>
       <div class="code-grid"><div class="code-row explained"><span class="ln">1</span><code># 동일한 평가 환자에 대한 두 구간을 나란히 비교</code><span class="line-note">두 방법의 구간을 동일한 환자 순서로 비교한다.</span></div><div class="code-row explained"><span class="ln">2</span><code>order = np.argsort(conf_center)</code><span class="line-note">EBM 예측값이 낮은 환자부터 높은 환자 순으로 정렬한다.</span></div><div class="code-row"><span class="ln">3</span><code>x_axis = np.arange(len(order))</code><span class="line-note"></span></div><div class="code-row explained"><span class="ln">4</span><code>actual = y_test.to_numpy()[order]</code><span class="line-note">실제값도 같은 순서로 재배열한다.</span></div><div class="code-row"><span class="ln">5</span><code>&nbsp;</code><span class="line-note"></span></div><div class="code-row explained"><span class="ln">6</span><code>fig, axes = plt.subplots(1, 2, figsize=(15, 5), sharey=True)</code><span class="line-note">왼쪽 NGBoost, 오른쪽 Conformal 그래프를 만든다.</span></div><div class="code-row"><span class="ln">7</span><code>&nbsp;</code><span class="line-note"></span></div><div class="code-row explained"><span class="ln">8</span><code>axes[0].fill_between(x_axis, ngb_lower[order], ngb_upper[order], alpha=0.28, color=&#x27;#FF9800&#x27;)</code><span class="line-note">NGBoost의 주황색 영역이 환자별 90% 예측구간이다.</span></div><div class="code-row explained"><span class="ln">9</span><code>axes[0].plot(x_axis, ngb_center[order], color=&#x27;#E65100&#x27;, linewidth=2, label=&#x27;예측값&#x27;)</code><span class="line-note">주황색 선은 NGBoost 점 예측이다.</span></div><div class="code-row explained"><span class="ln">10</span><code>axes[0].scatter(x_axis, actual, s=15, color=&#x27;black&#x27;, label=&#x27;실제값&#x27;)</code><span class="line-note">검은 점이 실제 관찰값이다.</span></div><div class="code-row"><span class="ln">11</span><code>axes[0].set_title(&#x27;NGBoost의 90% 예측구간&#x27;)</code><span class="line-note"></span></div><div class="code-row"><span class="ln">12</span><code>axes[0].set_xlabel(&#x27;평가 환자&#x27;)</code><span class="line-note"></span></div><div class="code-row"><span class="ln">13</span><code>axes[0].set_ylabel(&#x27;질병 진행도&#x27;)</code><span class="line-note"></span></div><div class="code-row"><span class="ln">14</span><code>axes[0].legend()</code><span class="line-note"></span></div><div class="code-row"><span class="ln">15</span><code>&nbsp;</code><span class="line-note"></span></div><div class="code-row explained"><span class="ln">16</span><code>axes[1].fill_between(x_axis, conf_lower[order], conf_upper[order], alpha=0.28, color=&#x27;#4CAF50&#x27;)</code><span class="line-note">초록색 영역이 EBM+Conformal의 예측구간이다.</span></div><div class="code-row"><span class="ln">17</span><code>axes[1].plot(x_axis, conf_center[order], color=&#x27;#1B5E20&#x27;, linewidth=2, label=&#x27;예측값&#x27;)</code><span class="line-note"></span></div><div class="code-row"><span class="ln">18</span><code>axes[1].scatter(x_axis, actual, s=15, color=&#x27;black&#x27;, label=&#x27;실제값&#x27;)</code><span class="line-note"></span></div><div class="code-row"><span class="ln">19</span><code>axes[1].set_title(&#x27;EBM + Conformal의 90% 예측구간&#x27;)</code><span class="line-note"></span></div><div class="code-row"><span class="ln">20</span><code>axes[1].set_xlabel(&#x27;평가 환자&#x27;)</code><span class="line-note"></span></div><div class="code-row"><span class="ln">21</span><code>axes[1].legend()</code><span class="line-note"></span></div><div class="code-row"><span class="ln">22</span><code>&nbsp;</code><span class="line-note"></span></div><div class="code-row"><span class="ln">23</span><code>for ax in axes:</code><span class="line-note"></span></div><div class="code-row"><span class="ln">24</span><code>    ax.grid(alpha=0.2)</code><span class="line-note"></span></div><div class="code-row"><span class="ln">25</span><code>&nbsp;</code><span class="line-note"></span></div><div class="code-row"><span class="ln">26</span><code>plt.tight_layout()</code><span class="line-note"></span></div><div class="code-row"><span class="ln">27</span><code>plt.show()</code><span class="line-note"></span></div><div class="code-row"><span class="ln">28</span><code>&nbsp;</code><span class="line-note"></span></div><div class="code-row explained"><span class="ln">29</span><code>print(&#x27;해석 순서&#x27;)</code><span class="line-note">그래프를 읽을 때 Coverage → 폭 → 환자별 폭 차이 순서로 보게 한다.</span></div><div class="code-row"><span class="ln">30</span><code>print(&#x27;1) Coverage가 목표 90%에 가까운가?&#x27;)</code><span class="line-note"></span></div><div class="code-row"><span class="ln">31</span><code>print(&#x27;2) Coverage가 비슷할 때 어느 구간이 더 좁은가?&#x27;)</code><span class="line-note"></span></div><div class="code-row"><span class="ln">32</span><code>print(&#x27;3) 환자별로 폭이 달라지는 정보가 연구목적에 필요한가?&#x27;)</code><span class="line-note"></span></div></div>
-    </div><h3>결과표를 어떻게 읽나</h3><ol><li><b>목표 Coverage와 차이</b>가 작은 방법을 먼저 찾는다.</li><li>둘 다 90%에 비슷하게 가깝다면 <b>평균 구간 폭</b>을 비교한다.</li><li>환자마다 폭이 달라지는 정보가 필요한지 판단한다.</li><li>설명 가능성까지 필요하다면 EBM + Conformal의 장점을 함께 고려한다.</li></ol><div class="warn"><strong>좁은 구간의 함정</strong><br>NGBoost 구간이 더 좁더라도 실제값을 자주 놓치면 “정밀하다”가 아니라 “과도하게 자신한다”에 가깝습니다.</div></section>
+    </div><h3>결과표를 어떻게 읽나</h3><ol><li><b>목표 Coverage와 차이</b>가 작은 방법을 먼저 찾는다.</li><li>둘 다 90%에 비슷하게 가깝다면 <b>평균 구간 폭</b>을 비교한다.</li><li>환자마다 폭이 달라지는 정보가 필요한지 판단한다.</li><li>설명 가능성까지 필요하다면 EBM + Conformal의 장점을 함께 고려한다.</li></ol><div class="warn"><strong>좁은 구간의 함정</strong><br>NGBoost 구간이 더 좁더라도 실제값을 자주 놓치면 “정밀하다”가 아니라 “과도하게 자신한다”에 가깝습니다.</div><div class="experiment"><h3>상황 3 확장 실습: 목표 Coverage와 학습 강도를 조금씩 바꿔 보기</h3><p>예측구간에서는 무조건 좁은 구간을 고르면 안 됩니다. 먼저 <strong>몇 퍼센트를 포함하겠다고 약속할지</strong> 정하고, 그 목표를 비슷하게 지키는 방법끼리 폭을 비교합니다.</p><table class="edit-table"><tr><th>바꿀 위치</th><th>시험할 값</th><th>뜻</th><th>예상되는 변화</th></tr><tr><td>Conformal <code>alpha</code></td><td>0.20, 0.10, 0.05</td><td>구간 밖으로 놓쳐도 된다고 정한 비율</td><td>alpha가 작을수록 목표 Coverage가 80% → 90% → 95%로 높아지고 구간은 대체로 넓어집니다.</td></tr><tr><td>NGBoost <code>n_estimators</code></td><td>300, 500, 700</td><td>부스팅 단계 수</td><td>충분하지 않으면 덜 학습하고, 지나치면 과적합할 수 있습니다.</td></tr><tr><td>NGBoost <code>learning_rate</code></td><td>0.01, 0.03, 0.05</td><td>한 단계가 분포 예측을 고치는 크기</td><td>작게 하면 보통 더 많은 <code>n_estimators</code>가 필요합니다.</td></tr><tr><td>NGBoost <code>minibatch_frac</code></td><td>0.5, 0.8, 1.0</td><td>각 단계에서 사용할 학습자료의 비율</td><td>작게 하면 무작위성이 늘어 규제 효과가 날 수 있지만 결과 변동도 커집니다.</td></tr></table><h4>A. 80%·90%·95% Conformal 구간 비교</h4><p><code>alpha=0.10</code>은 목표 미포함률 10%, 즉 목표 Coverage 90%입니다. 연구목적에 따라 목표를 먼저 정해야 하며, 평가 결과를 본 뒤 잘 맞아 보이는 alpha를 골라서는 안 됩니다.</p><div class="code-card tune-card"><div class="code-head"><strong>상황 3A · alpha만 바꾸어 Coverage와 폭 비교</strong><button class="copy" data-copy="# 상황 3 확장 실습 A: 원하는 Coverage에 따라 alpha 바꾸기
+def make_conformal_interval(alpha):
+    cal_pred = ebm.predict(X_cal)
+    cal_scores = np.abs(y_cal.to_numpy() - cal_pred)
+
+    quantile_level = min(
+        1.0,
+        np.ceil((len(cal_scores) + 1) * (1 - alpha)) / len(cal_scores)
+    )
+    q = np.quantile(cal_scores, quantile_level, method=&amp;#x27;higher&amp;#x27;)
+
+    center = ebm.predict(X_test)
+    lower = center - q
+    upper = center + q
+    coverage = np.mean((y_test.to_numpy() &gt;= lower) &amp; (y_test.to_numpy() &lt;= upper))
+
+    return {
+        &amp;#x27;목표 Coverage&amp;#x27;: 1 - alpha,
+        &amp;#x27;q&amp;#x27;: q,
+        &amp;#x27;실제 Coverage&amp;#x27;: coverage,
+        &amp;#x27;평균 구간 폭&amp;#x27;: np.mean(upper - lower),
+    }
+
+coverage_results = pd.DataFrame([
+    make_conformal_interval(alpha=0.20),  # 목표 80%
+    make_conformal_interval(alpha=0.10),  # 목표 90%
+    make_conformal_interval(alpha=0.05),  # 목표 95%
+])
+display(coverage_results.style.format({
+    &amp;#x27;목표 Coverage&amp;#x27;:&amp;#x27;{:.0%}&amp;#x27;, &amp;#x27;q&amp;#x27;:&amp;#x27;{:.1f}&amp;#x27;,
+    &amp;#x27;실제 Coverage&amp;#x27;:&amp;#x27;{:.1%}&amp;#x27;, &amp;#x27;평균 구간 폭&amp;#x27;:&amp;#x27;{:.1f}&amp;#x27;
+}))">코드 복사</button></div><pre class="tune-code"><code># 상황 3 확장 실습 A: 원하는 Coverage에 따라 alpha 바꾸기
+def make_conformal_interval(alpha):
+    cal_pred = ebm.predict(X_cal)
+    cal_scores = np.abs(y_cal.to_numpy() - cal_pred)
+
+    quantile_level = min(
+        1.0,
+        np.ceil((len(cal_scores) + 1) * (1 - alpha)) / len(cal_scores)
+    )
+    q = np.quantile(cal_scores, quantile_level, method='higher')
+
+    center = ebm.predict(X_test)
+    lower = center - q
+    upper = center + q
+    coverage = np.mean((y_test.to_numpy() &gt;= lower) &amp; (y_test.to_numpy() &lt;= upper))
+
+    return {
+        '목표 Coverage': 1 - alpha,
+        'q': q,
+        '실제 Coverage': coverage,
+        '평균 구간 폭': np.mean(upper - lower),
+    }
+
+coverage_results = pd.DataFrame([
+    make_conformal_interval(alpha=0.20),  # 목표 80%
+    make_conformal_interval(alpha=0.10),  # 목표 90%
+    make_conformal_interval(alpha=0.05),  # 목표 95%
+])
+display(coverage_results.style.format({
+    '목표 Coverage':'{:.0%}', 'q':'{:.1f}',
+    '실제 Coverage':'{:.1%}', '평균 구간 폭':'{:.1f}'
+}))</code></pre></div><h4>B. NGBoost의 반복 수와 학습률 비교</h4><p>NGBoost는 중심 예측뿐 아니라 분포의 폭도 학습하므로 RMSE 하나만 보면 안 됩니다. 아래 예에서는 보정자료에서 RMSE, Coverage, 평균 구간 폭을 함께 봅니다.</p><div class="code-card tune-card"><div class="code-head"><strong>상황 3B · NGBoost 학습 강도 비교</strong><button class="copy" data-copy="# 상황 3 확장 실습 B: NGBoost 학습 강도 비교
+ngb_candidates = {
+    &amp;#x27;빠른_기준&amp;#x27;: NGBRegressor(
+        Dist=Normal, n_estimators=300, learning_rate=0.03,
+        minibatch_frac=1.0, random_state=SEED, verbose=False
+    ),
+    &amp;#x27;천천히_학습&amp;#x27;: NGBRegressor(
+        Dist=Normal, n_estimators=700, learning_rate=0.01,
+        minibatch_frac=1.0, random_state=SEED, verbose=False
+    ),
+}
+
+ngb_rows = []
+for name, model in ngb_candidates.items():
+    model.fit(X_train.values, y_train.values)
+    dist_cal = model.pred_dist(X_cal.values)
+    center_cal = np.asarray(dist_cal.loc)
+    sd_cal = np.asarray(dist_cal.scale)
+    lower_cal = center_cal - 1.6448536269514722 * sd_cal
+    upper_cal = center_cal + 1.6448536269514722 * sd_cal
+
+    ngb_rows.append({
+        &amp;#x27;후보&amp;#x27;: name,
+        &amp;#x27;보정 RMSE&amp;#x27;: mean_squared_error(y_cal, center_cal) ** 0.5,
+        &amp;#x27;보정 Coverage&amp;#x27;: np.mean(
+            (y_cal.to_numpy() &gt;= lower_cal) &amp;
+            (y_cal.to_numpy() &lt;= upper_cal)
+        ),
+        &amp;#x27;평균 구간 폭&amp;#x27;: np.mean(upper_cal - lower_cal),
+    })
+
+display(pd.DataFrame(ngb_rows).style.format({
+    &amp;#x27;보정 RMSE&amp;#x27;:&amp;#x27;{:.2f}&amp;#x27;, &amp;#x27;보정 Coverage&amp;#x27;:&amp;#x27;{:.1%}&amp;#x27;, &amp;#x27;평균 구간 폭&amp;#x27;:&amp;#x27;{:.1f}&amp;#x27;
+}))">코드 복사</button></div><pre class="tune-code"><code># 상황 3 확장 실습 B: NGBoost 학습 강도 비교
+ngb_candidates = {
+    '빠른_기준': NGBRegressor(
+        Dist=Normal, n_estimators=300, learning_rate=0.03,
+        minibatch_frac=1.0, random_state=SEED, verbose=False
+    ),
+    '천천히_학습': NGBRegressor(
+        Dist=Normal, n_estimators=700, learning_rate=0.01,
+        minibatch_frac=1.0, random_state=SEED, verbose=False
+    ),
+}
+
+ngb_rows = []
+for name, model in ngb_candidates.items():
+    model.fit(X_train.values, y_train.values)
+    dist_cal = model.pred_dist(X_cal.values)
+    center_cal = np.asarray(dist_cal.loc)
+    sd_cal = np.asarray(dist_cal.scale)
+    lower_cal = center_cal - 1.6448536269514722 * sd_cal
+    upper_cal = center_cal + 1.6448536269514722 * sd_cal
+
+    ngb_rows.append({
+        '후보': name,
+        '보정 RMSE': mean_squared_error(y_cal, center_cal) ** 0.5,
+        '보정 Coverage': np.mean(
+            (y_cal.to_numpy() &gt;= lower_cal) &amp;
+            (y_cal.to_numpy() &lt;= upper_cal)
+        ),
+        '평균 구간 폭': np.mean(upper_cal - lower_cal),
+    })
+
+display(pd.DataFrame(ngb_rows).style.format({
+    '보정 RMSE':'{:.2f}', '보정 Coverage':'{:.1%}', '평균 구간 폭':'{:.1f}'
+}))</code></pre></div><div class="checklist"><strong>결과 기록표에 반드시 넣을 것</strong><ul><li>목표 Coverage와 실제 Coverage</li><li>평균 구간 폭</li><li>점 예측 RMSE</li><li>환자별 구간 폭이 실제로 달라지는지</li><li>같은 설정을 다시 실행하거나 분할을 바꿨을 때 결과가 유지되는지</li></ul></div><div class="warn"><strong>중요한 구분</strong><br>Conformal의 <code>alpha</code>는 성능을 높이는 튜닝 숫자가 아니라 연구자가 원하는 보장 수준입니다. 95% 구간이 90% 구간보다 넓어지는 것은 실패가 아니라 더 많은 실제값을 포함하기 위해 치르는 대가입니다. 또한 NGBoost의 정규분포 구간은 분포 가정에 의존하므로 실제 Coverage를 반드시 확인해야 합니다.</div></div></section>
 
 <section data-search id="decision"><h2>14. 세 상황을 한 번에 정리하는 모델 선택표</h2><div class="decision"><article><h3>관계 설명</h3><p><b>먼저 볼 것:</b> BMI 곡선</p><p><b>GAM:</b> 매끄러운 전체 추세</p><p><b>EBM:</b> 임계형 변화·상호작용</p></article><article><h3>점 예측</h3><p><b>먼저 볼 것:</b> RMSE·MAE</p><p><b>차이가 작으면:</b> 설명력 고려</p><p><b>차이가 크면:</b> 예측 우위 고려</p></article><article><h3>예측구간</h3><p><b>먼저 볼 것:</b> Coverage</p><p><b>그다음:</b> 평균 구간 폭</p><p><b>추가:</b> 환자별 폭 차이</p></article></div><table class="compare"><tr><th>상황</th><th>후보</th><th>얻는 것</th><th>포기하거나 확인할 것</th></tr><tr><td>BMI 관계 설명</td><td>GAM</td><td>간결하고 매끄러운 설명</td><td>자동 상호작용 탐색이 제한적</td></tr><tr><td>설명과 유연성</td><td>EBM</td><td>임계형 관계와 일부 상호작용</td><td>항이 많아지면 설명 부담</td></tr><tr><td>예측오차 최소화</td><td>GBDT·Random Forest</td><td>복잡한 비선형·상호작용 학습</td><td>전체 규칙을 간단히 설명하기 어려움</td></tr><tr><td>환자별 분포</td><td>NGBoost</td><td>환자별로 다른 분포와 폭</td><td>분포 가정과 Coverage 검증</td></tr><tr><td>설명 가능한 90% 구간</td><td>EBM + Conformal</td><td>설명력과 목표 포함률 보정</td><td>기본 split 구간은 넓거나 같은 폭일 수 있음</td></tr></table></section>
 
