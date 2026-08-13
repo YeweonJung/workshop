@@ -24,7 +24,125 @@
 
 <section data-search id="map"><span class="ppt">PPT 4–5</span><h2>2. 모델은 네 가지 질문을 따라 나뉜다</h2><table class="compare"><thead><tr><th>연구자가 원하는 것</th><th>대표 방법</th><th>모델이 내놓는 결과</th><th>먼저 확인할 것</th></tr></thead><tbody><tr><td>관계를 설명</td><td>Spline, GAM, EBM, NAM</td><td>변수별 곡선·기여도</td><td>곡선 형태와 안정성</td></tr><tr><td>점 예측 성능</td><td>Random Forest, GBDT</td><td>환자별 하나의 예측값</td><td>RMSE·MAE·R²</td></tr><tr><td>불확실성 제시</td><td>NGBoost, Conformal Prediction</td><td>확률분포 또는 예측구간</td><td>Coverage와 구간 폭</td></tr><tr><td>작은 표 데이터의 빠른 기준선</td><td>TabPFN, TabICL, TabFM</td><td>사전학습 지식을 이용한 예측</td><td>적용 범위·외부검증</td></tr></tbody></table><div class="answer"><strong>슬라이드의 핵심 문장</strong><br>새 모델이 나왔다고 이전 모델이 쓸모없어지는 것은 아닙니다. 새 모델은 설명력, 성능, 불확실성, 재사용성 가운데 부족했던 부분을 보완합니다.</div></section>
 
-<section data-search id="gam"><span class="ppt">PPT 6</span><h2>3. GAM: 변수별 곡선을 더해 설명한다</h2><p class="lead"><b>GAM</b>은 Generalized Additive Model, 한국어로 일반화 가법모형입니다. 각 예측변수의 효과를 하나의 함수로 표현하고 그 함수들을 더합니다.</p><div class="formula">예측값 = 절편 + f₁(age) + f₂(sex) + f₃(bmi) + … + f₁₀(s6)</div><p>여기서 <code>f₃(bmi)</code>는 BMI가 예측값을 얼마나 올리거나 내리는지를 나타내는 <strong>BMI의 전체 효과 곡선</strong>입니다. 이 변수별 효과를 분리해 볼 수 있기 때문에 GAM은 복잡한 머신러닝 모델보다 예측력이 낮을 수 있어도 관계의 방향과 모양을 해석하는 데 유용합니다.</p><div class="cards"><div class="card"><h3>잘하는 것</h3><ul><li>각 변수의 방향과 곡선을 따로 보여준다.</li><li>BMI 효과를 다른 변수 효과와 분리해 설명하기 쉽다.</li><li>매끄러운 전체 추세를 전달하기 좋다.</li></ul></div><div class="card"><h3>조심할 것</h3><ul><li>기본 가법 구조는 변수 간 상호작용을 자동으로 포함하지 않는다.</li><li>표본이 적은 양끝 구간의 곡선은 불안정할 수 있다.</li><li>기저함수의 수와 평활화 정도에 따라 곡선 모양이 달라진다.</li></ul></div></div><details open><summary>Basis expansion은 무엇인가?</summary><p>복잡한 곡선 하나를 통째로 찾기보다, 미리 정한 여러 개의 단순한 함수 <code>B₁(x), B₂(x), …</code>를 준비하고 각각에 가중치를 곱해 더하는 방법입니다.</p><div class="formula">f(x) = θ₁B₁(x) + θ₂B₂(x) + … + θₖBₖ(x)</div><p>이렇게 여러 기저함수(basis function)의 합으로 곡선을 표현하는 것을 <strong>basis expansion</strong>이라고 합니다. B-spline은 매끄러운 비선형 관계에 널리 쓰이는 기저함수이고, sine·cosine으로 구성된 Fourier basis는 계절성처럼 주기적으로 반복되는 변화에 특히 유용합니다.</p></details><details open><summary>Spline은 “구간을 나눈다”는 게 무슨 뜻인가?</summary><p>B-spline 기저함수 하나는 x축 전체를 똑같이 설명하기보다 특정 범위에서 주로 작동하는 작은 곡선 조각처럼 생각할 수 있습니다. BMI 관계가 거의 일정하고 단순하면 적은 수의 조각으로도 충분합니다. 완만한 구간과 급격한 구간이 섞여 관계가 복잡하면 더 많은 조각을 조합해야 그 변화를 세밀하게 표현할 수 있습니다. 조각들은 경계에서 끊어지지 않도록 매끄럽게 연결됩니다.</p></details><details open><summary>n_splines는 정확히 무엇을 세는가?</summary><p><code>n_splines</code>는 <code>f₁(age), f₂(sex), f₃(bmi)</code>처럼 <strong>변수별 효과 함수의 개수</strong>를 세는 값이 아닙니다. 변수 하나의 효과 함수 <code>fⱼ(xⱼ)</code>를 조립하는 <strong>B-spline 기저함수의 수</strong>입니다.</p><div class="formula">f₃(bmi) = θ₁B₁(bmi) + θ₂B₂(bmi) + … + θₖBₖ(bmi)</div><p><code>n_splines</code>의 크기가 커지면 사용할 수 있는 기저함수가 많아져 더 복잡하고 세밀한 곡선을 표현할 수 있습니다. 학습자료에는 더 잘 맞아 적합도가 올라갈 수 있지만, 우연한 흔들림까지 따라가면 처음 보는 자료의 예측성능은 오히려 떨어지는 과적합이 생길 수 있습니다.</p></details><div class="spline-visuals"><figure class="spline-figure"><svg viewBox="0 0 300 220" role="img" aria-label="B-spline 기저함수를 하나씩 더해 전체 적합곡선을 만드는 과정"><rect width="300" height="220" fill="#fbfcfc"/><line x1="25" y1="185" x2="282" y2="185" stroke="#9aa6ad"/><line x1="25" y1="20" x2="25" y2="185" stroke="#9aa6ad"/><g fill="#8e9aa1" opacity=".72"><circle cx="34" cy="163" r="4"/><circle cx="52" cy="148" r="4"/><circle cx="68" cy="156" r="4"/><circle cx="84" cy="132" r="4"/><circle cx="102" cy="140" r="4"/><circle cx="118" cy="119" r="4"/><circle cx="136" cy="126" r="4"/><circle cx="154" cy="91" r="4"/><circle cx="172" cy="100" r="4"/><circle cx="190" cy="74" r="4"/><circle cx="208" cy="83" r="4"/><circle cx="226" cy="55" r="4"/><circle cx="244" cy="66" r="4"/><circle cx="262" cy="40" r="4"/></g><path d="M25 170 C55 145 72 138 96 137" fill="none" stroke="#b8761b" stroke-width="3"/><path d="M25 170 C60 142 88 144 112 125 C130 111 145 108 160 103" fill="none" stroke="#31735a" stroke-width="3"/><path d="M25 170 C61 143 87 146 114 124 C139 102 158 103 181 84 C206 64 233 69 276 36" fill="none" stroke="#236b8e" stroke-width="4"/></svg><figcaption><strong>그림 1. 기저함수의 누적</strong><br>작은 곡선 조각에 가중치를 주어 하나씩 더하면 산점도의 전체 흐름을 설명하는 매끄러운 곡선이 만들어집니다.</figcaption></figure><figure class="spline-figure"><svg viewBox="0 0 300 220" role="img" aria-label="n_splines 값에 따른 산점도 적합곡선 비교"><rect width="300" height="220" fill="#fbfcfc"/><line x1="25" y1="185" x2="282" y2="185" stroke="#9aa6ad"/><line x1="25" y1="20" x2="25" y2="185" stroke="#9aa6ad"/><g fill="#8e9aa1" opacity=".72"><circle cx="34" cy="163" r="4"/><circle cx="52" cy="148" r="4"/><circle cx="68" cy="156" r="4"/><circle cx="84" cy="132" r="4"/><circle cx="102" cy="140" r="4"/><circle cx="118" cy="119" r="4"/><circle cx="136" cy="126" r="4"/><circle cx="154" cy="91" r="4"/><circle cx="172" cy="100" r="4"/><circle cx="190" cy="74" r="4"/><circle cx="208" cy="83" r="4"/><circle cx="226" cy="55" r="4"/><circle cx="244" cy="66" r="4"/><circle cx="262" cy="40" r="4"/></g><path d="M25 166 C85 148 145 113 276 45" fill="none" stroke="#b8761b" stroke-width="3" stroke-dasharray="8 5"/><path d="M25 170 C78 145 101 137 135 116 C170 95 196 77 276 38" fill="none" stroke="#31735a" stroke-width="4"/><path d="M25 169 C48 148 70 158 92 133 C115 108 134 136 157 98 C179 63 196 94 219 58 C242 25 258 56 276 34" fill="none" stroke="#b64b3b" stroke-width="3"/></svg><figcaption><strong>그림 2. 같은 산점도의 적합 비교</strong><br><code>n_splines</code>가 커질수록 더 세밀하게 휘어질 수 있습니다. 너무 크면 우연한 흔들림까지 따라갈 수 있으므로 보정·평가자료 성능을 함께 확인합니다.</figcaption></figure></div><div class="answer"><strong>그림 읽는 법</strong><br>여러 B-spline 기저함수의 가중합이 BMI의 효과함수 <code>f₃(bmi)</code> 하나를 만듭니다.</div><details open><summary>lam은 왜 함께 조절하는가?</summary><p><code>lam</code>은 곡선이 지나치게 구불거리지 않도록 누르는 평활화 벌점입니다. <code>n_splines</code>가 표현 가능한 복잡도의 상한을 정한다면, <code>lam</code>은 그 복잡성을 실제로 얼마나 사용할지 조절합니다. 따라서 <code>n_splines</code>를 크게 했다고 곡선이 반드시 복잡해지는 것은 아니며, 큰 <code>lam</code>이 굴곡을 억제할 수 있습니다. 두 값은 학습 적합도만이 아니라 교차검증이나 보정자료 성능과 곡선 안정성을 함께 보며 정합니다.</p></details></section>
+<section data-search id="gam"><span class="ppt">PPT 6</span><h2>3. GAM: 변수별 곡선을 더해 설명한다</h2><p class="lead"><b>GAM</b>은 Generalized Additive Model, 한국어로 일반화 가법모형입니다. 각 예측변수의 효과를 하나의 함수로 표현하고 그 함수들을 더합니다.</p><div class="formula">예측값 = 절편 + f₁(age) + f₂(sex) + f₃(bmi) + … + f₁₀(s6)</div><p>여기서 <code>f₃(bmi)</code>는 BMI가 예측값을 얼마나 올리거나 내리는지를 나타내는 <strong>BMI의 전체 효과 곡선</strong>입니다. 이 변수별 효과를 분리해 볼 수 있기 때문에 GAM은 복잡한 머신러닝 모델보다 예측력이 낮을 수 있어도 관계의 방향과 모양을 해석하는 데 유용합니다.</p><div class="cards"><div class="card"><h3>잘하는 것</h3><ul><li>각 변수의 방향과 곡선을 따로 보여준다.</li><li>BMI 효과를 다른 변수 효과와 분리해 설명하기 쉽다.</li><li>매끄러운 전체 추세를 전달하기 좋다.</li></ul></div><div class="card"><h3>조심할 것</h3><ul><li>기본 가법 구조는 변수 간 상호작용을 자동으로 포함하지 않는다.</li><li>표본이 적은 양끝 구간의 곡선은 불안정할 수 있다.</li><li>기저함수의 수와 평활화 정도에 따라 곡선 모양이 달라진다.</li></ul></div></div><details open><summary>Basis expansion은 무엇인가?</summary><p>복잡한 곡선 하나를 통째로 찾기보다, 미리 정한 여러 개의 단순한 함수 <code>B₁(x), B₂(x), …</code>를 준비하고 각각에 가중치를 곱해 더하는 방법입니다.</p><div class="formula">f(x) = θ₁B₁(x) + θ₂B₂(x) + … + θₖBₖ(x)</div><p>이렇게 여러 기저함수(basis function)의 합으로 곡선을 표현하는 것을 <strong>basis expansion</strong>이라고 합니다. B-spline은 매끄러운 비선형 관계에 널리 쓰이는 기저함수이고, sine·cosine으로 구성된 Fourier basis는 계절성처럼 주기적으로 반복되는 변화에 특히 유용합니다.</p></details><details open><summary>Spline은 “구간을 나눈다”는 게 무슨 뜻인가?</summary><p>B-spline 기저함수 하나는 x축 전체를 똑같이 설명하기보다 특정 범위에서 주로 작동하는 작은 곡선 조각처럼 생각할 수 있습니다. BMI 관계가 거의 일정하고 단순하면 적은 수의 조각으로도 충분합니다. 완만한 구간과 급격한 구간이 섞여 관계가 복잡하면 더 많은 조각을 조합해야 그 변화를 세밀하게 표현할 수 있습니다. 조각들은 경계에서 끊어지지 않도록 매끄럽게 연결됩니다.</p></details><details open><summary>n_splines는 정확히 무엇을 세는가?</summary><p><code>n_splines</code>는 <code>f₁(age), f₂(sex), f₃(bmi)</code>처럼 <strong>변수별 효과 함수의 개수</strong>를 세는 값이 아닙니다. 변수 하나의 효과 함수 <code>fⱼ(xⱼ)</code>를 조립하는 <strong>B-spline 기저함수의 수</strong>입니다.</p><div class="formula">f₃(bmi) = θ₁B₁(bmi) + θ₂B₂(bmi) + … + θₖBₖ(bmi)</div><p><code>n_splines</code>의 크기가 커지면 사용할 수 있는 기저함수가 많아져 더 복잡하고 세밀한 곡선을 표현할 수 있습니다. 학습자료에는 더 잘 맞아 적합도가 올라갈 수 있지만, 우연한 흔들림까지 따라가면 처음 보는 자료의 예측성능은 오히려 떨어지는 과적합이 생길 수 있습니다.</p></details><div class="spline-visuals"><figure class="spline-figure"><svg viewBox="0 0 300 220" role="img" aria-label="B-spline 기저함수를 하나씩 더해 전체 적합곡선을 만드는 과정"><rect width="300" height="220" fill="#fbfcfc"/><line x1="25" y1="185" x2="282" y2="185" stroke="#9aa6ad"/><line x1="25" y1="20" x2="25" y2="185" stroke="#9aa6ad"/><g fill="#8e9aa1" opacity=".72"><circle cx="34" cy="163" r="4"/><circle cx="52" cy="148" r="4"/><circle cx="68" cy="156" r="4"/><circle cx="84" cy="132" r="4"/><circle cx="102" cy="140" r="4"/><circle cx="118" cy="119" r="4"/><circle cx="136" cy="126" r="4"/><circle cx="154" cy="91" r="4"/><circle cx="172" cy="100" r="4"/><circle cx="190" cy="74" r="4"/><circle cx="208" cy="83" r="4"/><circle cx="226" cy="55" r="4"/><circle cx="244" cy="66" r="4"/><circle cx="262" cy="40" r="4"/></g><path d="M25 170 C55 145 72 138 96 137" fill="none" stroke="#b8761b" stroke-width="3"/><path d="M25 170 C60 142 88 144 112 125 C130 111 145 108 160 103" fill="none" stroke="#31735a" stroke-width="3"/><path d="M25 170 C61 143 87 146 114 124 C139 102 158 103 181 84 C206 64 233 69 276 36" fill="none" stroke="#236b8e" stroke-width="4"/></svg><figcaption><strong>그림 1. 기저함수의 누적</strong><br>작은 곡선 조각에 가중치를 주어 하나씩 더하면 산점도의 전체 흐름을 설명하는 매끄러운 곡선이 만들어집니다.</figcaption></figure><figure class="spline-figure"><svg viewBox="0 0 300 220" role="img" aria-label="n_splines 값에 따른 산점도 적합곡선 비교"><rect width="300" height="220" fill="#fbfcfc"/><line x1="25" y1="185" x2="282" y2="185" stroke="#9aa6ad"/><line x1="25" y1="20" x2="25" y2="185" stroke="#9aa6ad"/><g fill="#8e9aa1" opacity=".72"><circle cx="34" cy="163" r="4"/><circle cx="52" cy="148" r="4"/><circle cx="68" cy="156" r="4"/><circle cx="84" cy="132" r="4"/><circle cx="102" cy="140" r="4"/><circle cx="118" cy="119" r="4"/><circle cx="136" cy="126" r="4"/><circle cx="154" cy="91" r="4"/><circle cx="172" cy="100" r="4"/><circle cx="190" cy="74" r="4"/><circle cx="208" cy="83" r="4"/><circle cx="226" cy="55" r="4"/><circle cx="244" cy="66" r="4"/><circle cx="262" cy="40" r="4"/></g><path d="M25 166 C85 148 145 113 276 45" fill="none" stroke="#b8761b" stroke-width="3" stroke-dasharray="8 5"/><path d="M25 170 C78 145 101 137 135 116 C170 95 196 77 276 38" fill="none" stroke="#31735a" stroke-width="4"/><path d="M25 169 C48 148 70 158 92 133 C115 108 134 136 157 98 C179 63 196 94 219 58 C242 25 258 56 276 34" fill="none" stroke="#b64b3b" stroke-width="3"/></svg><figcaption><strong>그림 2. 같은 산점도의 적합 비교</strong><br><code>n_splines</code>가 커질수록 더 세밀하게 휘어질 수 있습니다. 너무 크면 우연한 흔들림까지 따라갈 수 있으므로 보정·평가자료 성능을 함께 확인합니다.</figcaption></figure></div><div class="answer"><strong>그림 읽는 법</strong><br>여러 B-spline 기저함수의 가중합이 BMI의 효과함수 <code>f₃(bmi)</code> 하나를 만듭니다.</div>
+<div class="experiment" id="spline-progress">
+<h3>직선에서 spline까지: 왜 필요한지 그림으로 따라가기</h3>
+<p class="lead">같은 산점도에 모델을 하나씩 추가해 보면 spline의 역할이 분명해집니다. 아래 R 코드는 <strong>운동 강도와 혈중 lactate</strong>처럼 낮은 구간에서는 거의 평평하고 높은 구간에서 급격히 증가하는 관계를 만듭니다.</p>
+<div class="tune-card"><h4>Step 0. 변화가 심한 비선형 자료 만들기</h4><pre class="tune-code"><code>library(ggplot2)
+library(splines)
+set.seed(123)
+
+intensity &lt;- seq(0, 100, length.out = 150)
+true_lactate &lt;- 1.2 +
+  0.008 * intensity +
+  0.0008 * pmax(intensity - 40, 0)^2 +
+  0.004 * pmax(intensity - 70, 0)^2
+lactate &lt;- true_lactate + rnorm(length(intensity), sd = 0.4)
+df_lactate &lt;- data.frame(intensity, lactate)
+
+ggplot(df_lactate, aes(intensity, lactate)) +
+  geom_point(alpha = 0.5) +
+  labs(x = "운동 강도(%)", y = "혈중 lactate") +
+  theme_minimal()</code></pre></div>
+<div class="answer"><strong>산점도에서 먼저 볼 것</strong><br>0–40은 거의 평평하고, 40–70은 서서히 증가하며, 70–100은 매우 빠르게 증가합니다. 즉 x가 같은 양만큼 증가해도 y의 변화량과 곡률이 구간마다 다릅니다.</div>
+
+<div class="tune-card"><h4>Step 1. 직선 하나 적합</h4><pre class="tune-code"><code>model_linear &lt;- lm(lactate ~ intensity, data = df_lactate)
+
+ggplot(df_lactate, aes(intensity, lactate)) +
+  geom_point(alpha = 0.35) +
+  geom_smooth(method = "lm", formula = y ~ x,
+              se = FALSE, linewidth = 1.2) +
+  labs(title = "Step 1: 직선 하나",
+       subtitle = "전체 범위를 하나의 기울기로 설명") +
+  theme_minimal()</code></pre><p>직선은 기울기가 하나뿐이므로 평평한 구간과 급격한 구간을 동시에 잘 표현하기 어렵습니다.</p></div>
+
+<div class="tune-card"><h4>Step 2. knot 후보로 구간 표시</h4><pre class="tune-code"><code>ggplot(df_lactate, aes(intensity, lactate)) +
+  geom_point(alpha = 0.45) +
+  geom_vline(xintercept = c(40, 70),
+             linetype = "dashed") +
+  annotate("text", x = c(20, 55, 85), y = 11,
+           label = c("거의 평평", "서서히 증가", "급격히 증가")) +
+  theme_minimal()</code></pre><p><code>40</code>과 <code>70</code>처럼 관계의 모양이 바뀌는 경계 후보를 <strong>knot(매듭점)</strong>이라고 생각할 수 있습니다. 실제 분석에서는 그림만 보고 임의로 정하기보다 연구 지식이나 검증 절차를 함께 사용합니다.</p></div>
+
+<div class="tune-card"><h4>Step 3. 구간별 직선을 따로 적합</h4><pre class="tune-code"><code>df_lactate$period &lt;- cut(
+  df_lactate$intensity,
+  breaks = c(-Inf, 40, 70, Inf),
+  labels = c("0-40", "40-70", "70-100")
+)
+
+ggplot(df_lactate,
+       aes(intensity, lactate, color = period)) +
+  geom_point(alpha = 0.35) +
+  geom_smooth(aes(group = period), method = "lm",
+              formula = y ~ x, se = FALSE) +
+  geom_vline(xintercept = c(40, 70),
+             linetype = "dashed") +
+  theme_minimal()</code></pre><p>각 구간은 서로 다른 기울기를 가질 수 있어 직선 하나보다 유연합니다. 그러나 회귀를 완전히 따로 계산하면 knot에서 선이 자연스럽게 이어진다는 보장이 없습니다.</p></div>
+
+<div class="tune-card"><h4>Step 4. cubic B-spline으로 부드럽게 연결</h4><pre class="tune-code"><code>model_spline &lt;- lm(
+  lactate ~ bs(intensity,
+               knots = c(40, 70),
+               degree = 3),
+  data = df_lactate
+)
+
+new_lactate &lt;- data.frame(
+  intensity = seq(0, 100, length.out = 500)
+)
+new_lactate$pred &lt;- predict(
+  model_spline, newdata = new_lactate
+)
+
+ggplot(df_lactate, aes(intensity, lactate)) +
+  geom_point(alpha = 0.35) +
+  geom_line(data = new_lactate,
+            aes(intensity, pred),
+            linewidth = 1.2, color = "#236b8e") +
+  geom_vline(xintercept = c(40, 70),
+             linetype = "dashed") +
+  theme_minimal()</code></pre></div>
+<div class="formula">Spline = 구간별 유연성 + knot에서의 매끄러운 연결</div>
+<table class="compare"><tr><th>방법</th><th>적합 방식</th><th>확인할 점</th></tr><tr><td>직선 하나</td><td>전체 범위에 같은 기울기</td><td>구간별 변화 차이를 놓칠 수 있음</td></tr><tr><td>구간별 독립 직선</td><td>구간마다 다른 기울기</td><td>knot에서 끊길 수 있음</td></tr><tr><td>cubic B-spline</td><td>구간별로 유연하게 적합하고 매끄럽게 연결</td><td>knot·복잡도 선택과 과적합 확인</td></tr></table>
+</div>
+
+<div class="experiment" id="spline-df">
+<h3>같은 산점도에서 spline basis 수를 늘려 보기</h3>
+<p>차이가 잘 보이도록 올라갔다 내려갔다 다시 올라가는 자료를 사용합니다. 다른 것은 그대로 두고 <code>bs(x, df=...)</code>의 <code>df</code>만 바꿉니다.</p>
+<pre class="tune-code"><code>set.seed(123)
+x &lt;- seq(0, 100, length.out = 150)
+true_y &lt;- 5 + 3*sin(x/8) +
+  0.003*(x-50)^2 +
+  5*exp(-((x-70)/8)^2)
+y &lt;- true_y + rnorm(length(x), sd = 1.2)
+df_curve &lt;- data.frame(x, y)
+
+models &lt;- list(
+  "df = 4"  = lm(y ~ bs(x, df = 4),  data = df_curve),
+  "df = 6"  = lm(y ~ bs(x, df = 6),  data = df_curve),
+  "df = 10" = lm(y ~ bs(x, df = 10), data = df_curve),
+  "df = 25" = lm(y ~ bs(x, df = 25), data = df_curve)
+)
+
+prediction_list &lt;- lapply(names(models), function(nm) {
+  temp &lt;- data.frame(x = seq(0, 100, length.out = 500))
+  temp$pred &lt;- predict(models[[nm]], newdata = temp)
+  temp$model &lt;- nm
+  temp
+})
+predictions &lt;- do.call(rbind, prediction_list)
+
+ggplot() +
+  geom_point(data = df_curve, aes(x, y), alpha = 0.25) +
+  geom_line(data = predictions,
+            aes(x, pred), linewidth = 1.1,
+            color = "#236b8e") +
+  facet_wrap(~ model, ncol = 2) +
+  theme_minimal()</code></pre>
+<table class="compare"><tr><th>R의 df</th><th>곡선의 모습</th><th>해석</th></tr><tr><td>4</td><td>매우 매끈하고 단순</td><td>큰 흐름만 잡아 과소적합할 수 있음</td></tr><tr><td>6</td><td>조금 더 구부러짐</td><td>주요 비선형 패턴 포착</td></tr><tr><td>10</td><td>상당히 유연함</td><td>복잡한 굴곡까지 표현</td></tr><tr><td>25</td><td>매우 구불구불할 수 있음</td><td>잡음까지 따라가는 과적합 위험</td></tr></table>
+<div class="warn"><strong>R의 df와 pyGAM의 n_splines는 같은 매개변수가 아닙니다.</strong><br>R <code>bs(x, df=...)</code>의 <code>df</code>는 생성되는 spline basis의 자유도와 관련되고, Python pyGAM의 <code>n_splines</code>는 각 smooth term에 사용하는 spline basis 개수를 지정합니다. 둘 다 곡선의 유연성과 관련되지만 숫자를 1:1로 대응시키면 안 됩니다. 각 환경에서 교차검증·보정자료 성능과 곡선 안정성을 기준으로 선택합니다.</div>
+<div class="answer"><strong>실습 원칙</strong><br>기준 결과를 저장한 뒤 숫자 하나만 바꾸고, 학습 적합도뿐 아니라 보정·평가자료의 오차와 곡선의 양끝 흔들림을 함께 비교합니다.</div>
+</div>
+<details open><summary>lam은 왜 함께 조절하는가?</summary><p><code>lam</code>은 곡선이 지나치게 구불거리지 않도록 누르는 평활화 벌점입니다. <code>n_splines</code>가 표현 가능한 복잡도의 상한을 정한다면, <code>lam</code>은 그 복잡성을 실제로 얼마나 사용할지 조절합니다. 따라서 <code>n_splines</code>를 크게 했다고 곡선이 반드시 복잡해지는 것은 아니며, 큰 <code>lam</code>이 굴곡을 억제할 수 있습니다. 두 값은 학습 적합도만이 아니라 교차검증이나 보정자료 성능과 곡선 안정성을 함께 보며 정합니다.</p></details></section>
 
 <section data-search id="ebm"><span class="ppt">PPT 7</span><h2>4. EBM: 가법 구조에 부스팅과 상호작용을 더한다</h2><p class="lead"><b>EBM</b>은 Explainable Boosting Machine입니다. GAM처럼 변수별 기여를 더하지만, 얕은 나무를 반복해 학습하면서 계단형·임계형 관계와 일부 상호작용을 자동으로 찾습니다.</p><div class="formula">예측값 = 절편 + Σ fⱼ(xⱼ) + Σ fⱼₖ(xⱼ,xₖ)</div><div class="cards"><div class="card"><h3>Global explanation</h3><p>전체 환자에서 BMI가 어느 값일 때 예측을 얼마나 올리거나 내리는지 보여줍니다. 변수 중요도와 shape function이 여기에 해당합니다.</p></div><div class="card"><h3>Local explanation</h3><p>특정 환자의 예측값이 왜 그렇게 나왔는지 변수별 기여를 더해 설명합니다.</p></div></div><div class="why"><strong>GAM과 EBM 중 무엇을 고를까?</strong><br>매끄러운 전체 관계를 간결하게 설명하려면 GAM, 임계형 변화·상호작용·개인별 기여까지 필요하면 EBM을 먼저 고려합니다.</div><div class="warn"><strong>계단 모양을 임상 임계값으로 바로 부르지 않는다.</strong><br>표본이 나뉜 방식에 따라 경계가 생겼을 수도 있으므로 다른 분할이나 외부 자료에서도 비슷한 위치가 반복되는지 확인해야 합니다.</div></section>
 
@@ -608,4 +726,3 @@ display(pd.DataFrame(ngb_rows).style.format({
 <script>
 const search=document.getElementById('search');const sections=[...document.querySelectorAll('[data-search]')];search.addEventListener('input',()=>{const q=search.value.trim().toLowerCase();sections.forEach(s=>s.classList.toggle('hidden',q&&!s.innerText.toLowerCase().includes(q)))});document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{const t=new DOMParser().parseFromString('<textarea>'+b.dataset.copy+'</textarea>','text/html').querySelector('textarea').value;await navigator.clipboard.writeText(t);const old=b.textContent;b.textContent='복사됨';setTimeout(()=>b.textContent=old,1100)}));document.getElementById('back').onclick=()=>scrollTo({top:0,behavior:'smooth'});addEventListener('scroll',()=>{const d=document.documentElement;document.getElementById('progress').style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+'%';let active='';document.querySelectorAll('main [id]').forEach(s=>{if(s.getBoundingClientRect().top<180)active=s.id});document.querySelectorAll('.nav a').forEach(a=>a.classList.toggle('active',a.hash==='#'+active))});
 </script></body></html>
-
