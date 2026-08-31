@@ -27,3 +27,6 @@
 ## Other Workshop Files
 
 이 저장소에는 기존 워크숍 HTML 자료도 함께 보관되어 있습니다.
+
+## https://html-preview.github.io/?url=https://github.com/YeweonJung/workshop/blob/main/desktop-pet-guide-en.html
+guide in english -> how to install
