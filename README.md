@@ -30,3 +30,6 @@
 
 ## https://html-preview.github.io/?url=https://github.com/YeweonJung/workshop/blob/main/desktop-pet-guide-en.html
 guide in english -> how to install
+
+## https://html-preview.github.io/?url=https://github.com/YeweonJung/workshop/blob/main/desktop-pet-guide-ko.html
+가이드라인 한국어버전
