@@ -9,7 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 RAW = ROOT / "data" / "raw"
-OUT = ROOT / "public" / "data"
+OUT = ROOT / "data" / "generated"
 OUT.mkdir(parents=True, exist_ok=True)
 
 

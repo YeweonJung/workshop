@@ -7,13 +7,13 @@ import {
 } from 'lucide-react';
 
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import facilityDataset from '@/public/data/facility-samples.json';
-import fitnessDataset from '@/public/data/fitness-guidance.json';
-import regionDataset from '@/public/data/region-insights.json';
-import schoolDataset from '@/public/data/school-facilities.json';
+import facilityDataset from '@/data/generated/facility-samples.json';
+import fitnessDataset from '@/data/generated/fitness-guidance.json';
+import regionDataset from '@/data/generated/region-insights.json';
+import schoolDataset from '@/data/generated/school-facilities.json';
 
 const areas = {
   송파구: { preferredCenter: 'KSPO송파', note: '생활권 내 체력측정·상담 거점' },
@@ -198,7 +198,7 @@ export default function Home() {
                     </div>
                     <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#dce6e1] bg-[#f7faf8] p-4">
                       <p className="text-sm leading-6 text-muted-foreground"><strong className="text-foreground">추천 근거:</strong> 개인 식별자와 측정값은 제외하고, {fitnessDataset.recordsWithPrescription.toLocaleString('ko-KR')}건의 처방 보유 기록을 연령구분별로 집계했습니다. 선택 생활권은 원본 센터 주소와 매칭했습니다.</p>
-                      <Button asChild variant="outline" className="rounded-xl bg-white"><a href={mapHref} target="_blank" rel="noreferrer">지도에서 위치 보기 <ExternalLink /></a></Button>
+                      <a href={mapHref} target="_blank" rel="noreferrer" className={buttonVariants({ variant: 'outline', className: 'rounded-xl bg-white' })}>지도에서 위치 보기 <ExternalLink /></a>
                     </div>
                   </article>
                   <article className="rounded-3xl border border-[#dce6e1] bg-card p-5 shadow-sm sm:p-6">
