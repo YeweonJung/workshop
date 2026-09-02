@@ -10,11 +10,20 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import facilityDataset from '@/public/data/facility-samples.json';
+import fitnessDataset from '@/public/data/fitness-guidance.json';
+import regionDataset from '@/public/data/region-insights.json';
+import schoolDataset from '@/public/data/school-facilities.json';
 
 const areas = {
-  송파구: { center: 'KSPO송파 체력인증센터', address: '서울특별시 송파구 올림픽로 424', phone: '02-1644-7110', note: '생활권 내 체력측정·상담 거점' },
-  중구: { center: '중구 체력인증센터', address: '서울특별시 중구 퇴계로 387', phone: '02-2280-8500', note: '충무스포츠센터 4층' },
-  성동구: { center: '성동 체력인증센터', address: '서울특별시 성동구 왕십리로5길 3', phone: '02-2286-7190', note: '공공복합청사 4층' },
+  송파구: { preferredCenter: 'KSPO송파', note: '생활권 내 체력측정·상담 거점' },
+  중구: { preferredCenter: '중구(서울)', note: '충무스포츠센터 4층' },
+  성동구: { preferredCenter: '성동', note: '공공복합청사 4층' },
+} as const;
+
+const ageGroupByAge = {
+  '10대': '청소년', '20대': '성인', '30대': '성인', '40대': '성인',
+  '50대': '성인', '60대': '성인', '70대 이상': '어르신',
 } as const;
 
 const recommendations = {
@@ -35,12 +44,14 @@ const fitnessLevels = ['입문', '보통', '숙련'] as const;
 const preferences = ['걷기·달리기', '근력운동', '구기·라켓', '유연성·균형'] as const;
 const availableTimes = ['20분', '30분', '45분', '60분 이상'] as const;
 
-const insightFields = [
-  { label: '생활체육 수요', detail: '시군구·종목별 수요시설 유형' },
-  { label: '지역 인구', detail: '동일 기준월의 시군구 인구' },
-  { label: '시설 공급', detail: '시설 수와 인구 1인당 시설 수' },
-  { label: '공급 순위', detail: '시군구 간 인당 시설 수 순위' },
-];
+function formatPhone(value?: string) {
+  const digits = (value ?? '').replace(/\D/g, '');
+  if (digits.startsWith('02') && digits.length === 9) return `${digits.slice(0, 2)}-${digits.slice(2, 5)}-${digits.slice(5)}`;
+  if (digits.startsWith('02') && digits.length === 10) return `${digits.slice(0, 2)}-${digits.slice(2, 6)}-${digits.slice(6)}`;
+  if (digits.length === 10) return `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(6)}`;
+  if (digits.length === 11) return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7)}`;
+  return value || '연락처 확인 필요';
+}
 
 export default function Home() {
   const [area, setArea] = useState<keyof typeof areas>('송파구');
@@ -51,9 +62,17 @@ export default function Home() {
   const [availableTime, setAvailableTime] = useState<(typeof availableTimes)[number]>('30분');
   const [showResult, setShowResult] = useState(true);
   const recommendation = recommendations[goal];
-  const facility = areas[area];
+  const ageGroup = ageGroupByAge[age as keyof typeof ageGroupByAge] ?? '성인';
+  const ageEvidence = fitnessDataset.ageGroups.find((item) => item.ageGroup === ageGroup);
+  const evidenceExercises = ageEvidence?.topExercises.slice(0, 3) ?? [];
+  const certCenter = fitnessDataset.centers.find((item) => item.province === '서울특별시' && item.district === area && item.name === areas[area].preferredCenter)
+    ?? fitnessDataset.centers.find((item) => item.province === '서울특별시' && item.district === area);
   const summary = useMemo(() => `${age} · 서울 ${area} · ${goal}`, [age, area, goal]);
-  const mapHref = `https://map.naver.com/p/search/${encodeURIComponent(facility.address)}`;
+  const mapHref = `https://map.naver.com/p/search/${encodeURIComponent(certCenter?.address ?? `서울특별시 ${area}`)}`;
+  const regionInsight = regionDataset.regions.find((item) => item.province === '서울특별시' && item.district === area);
+  const localFacilities = facilityDataset.facilities.filter((item) => item.province === '서울특별시' && item.district === area);
+  const localSchools = schoolDataset.facilities.filter((item) => item.province === '서울특별시' && item.district === area);
+  const maximumFacilityCount = Math.max(...(regionInsight?.demands.map((item) => item.count) ?? [1]), 1);
 
   return (
     <main className="min-h-screen bg-background text-foreground">
@@ -152,6 +171,10 @@ export default function Home() {
                         <h2 className="mt-1 text-3xl font-black tracking-[-0.04em] sm:text-4xl">{recommendation.title}</h2>
                         <p className="mt-2 text-base text-white/70">{recommendation.subtitle}</p>
                         <p className="mt-6 max-w-xl border-l-2 border-[#55d2a6] pl-4 text-sm leading-6 text-white/80">{recommendation.reason} 현재 체력수준은 <strong>{fitness}</strong>, 선호 활동은 <strong>{preference}</strong>로 반영했습니다.</p>
+                        <div className="mt-5 max-w-xl rounded-2xl border border-white/10 bg-white/5 p-4">
+                          <p className="text-xs font-bold text-[#9fd9c5]">공단 실제 처방 데이터 · {ageGroup} 상위 운동</p>
+                          <div className="mt-2 flex flex-wrap gap-2">{evidenceExercises.map((item) => <span key={item.name} className="rounded-full bg-white/10 px-3 py-1.5 text-xs font-bold">{item.name} <span className="text-white/45">{item.count.toLocaleString('ko-KR')}회</span></span>)}</div>
+                        </div>
                       </div>
                       <div className="grid grid-cols-2 gap-2 md:grid-cols-1">
                         <div className="rounded-2xl bg-white/10 px-4 py-3 backdrop-blur"><Clock3 className="mb-2 size-4 text-[#83e6c1]" /><p className="text-xs text-white/55">이용 가능시간</p><p className="mt-0.5 font-extrabold">{availableTime}</p></div>
@@ -159,28 +182,29 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-white/10 bg-black/10 px-6 py-3 text-xs text-white/60 sm:px-8">
-                      <span className="flex items-center gap-1.5"><Database className="size-3.5" /> 위치기반 체력측정·운동처방 정보 활용</span>
+                      <span className="flex items-center gap-1.5"><Database className="size-3.5" /> 운동처방 원본 {fitnessDataset.recordCount.toLocaleString('ko-KR')}건 집계</span>
                       <span className="flex items-center gap-1.5"><Info className="size-3.5" /> 의료 진단이 아닌 생활체육 탐색 정보</span>
                     </div>
                   </article>
                   <article className="rounded-3xl border border-[#dce6e1] bg-card p-5 shadow-sm sm:p-6">
                     <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
-                      <div><div className="flex items-center gap-2 text-sm font-bold text-primary"><Navigation className="size-4" /> 추천 운동을 시작할 가까운 거점</div><h3 className="mt-2 text-2xl font-black tracking-[-0.035em]">{facility.center}</h3><p className="mt-2 flex items-start gap-2 text-sm text-muted-foreground"><MapPin className="mt-0.5 size-4 shrink-0" /> {facility.address}</p></div>
+                      <div><div className="flex items-center gap-2 text-sm font-bold text-primary"><Navigation className="size-4" /> 추천 운동을 시작할 가까운 거점</div><h3 className="mt-2 text-2xl font-black tracking-[-0.035em]">{certCenter ? `${certCenter.name} 체력인증센터` : `${area} 체력인증센터`}</h3><p className="mt-2 flex items-start gap-2 text-sm text-muted-foreground"><MapPin className="mt-0.5 size-4 shrink-0" /> {certCenter?.address ?? `서울특별시 ${area}`}</p></div>
                       <Badge variant="secondary" className="bg-[#edf5f1] text-[#276b55]">공공 체력인증 거점</Badge>
                     </div>
                     <div className="mt-5 grid gap-3 sm:grid-cols-3">
-                      <div className="rounded-2xl bg-[#f7faf8] p-4"><p className="text-xs font-bold text-muted-foreground">시설 안내</p><p className="mt-1 text-sm font-extrabold">{facility.note}</p></div>
-                      <div className="rounded-2xl bg-[#f7faf8] p-4"><p className="text-xs font-bold text-muted-foreground">연락처</p><p className="mt-1 text-sm font-extrabold">{facility.phone}</p></div>
-                      <div className="rounded-2xl bg-[#f7faf8] p-4"><p className="text-xs font-bold text-muted-foreground">선정 근거</p><p className="mt-1 text-sm font-extrabold">지역·운동정보 일치</p></div>
+                      <div className="rounded-2xl bg-[#f7faf8] p-4"><p className="text-xs font-bold text-muted-foreground">시설 안내</p><p className="mt-1 text-sm font-extrabold">{areas[area].note}</p></div>
+                      <div className="rounded-2xl bg-[#f7faf8] p-4"><p className="text-xs font-bold text-muted-foreground">운영·연락처</p><p className="mt-1 text-sm font-extrabold">{certCenter?.hours || '운영시간 확인 필요'} · {formatPhone(certCenter?.phone)}</p></div>
+                      <div className="rounded-2xl bg-[#f7faf8] p-4"><p className="text-xs font-bold text-muted-foreground">선정 근거</p><p className="mt-1 text-sm font-extrabold">공단 원본 센터 {fitnessDataset.centerCount}곳 중 지역 매칭</p></div>
                     </div>
                     <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#dce6e1] bg-[#f7faf8] p-4">
-                      <p className="text-sm leading-6 text-muted-foreground"><strong className="text-foreground">추천 근거:</strong> 선택 생활권과 체력인증센터 주소를 우선 매칭하고, 목표·체력수준·선호활동·이용 가능시간을 운동 안내에 반영했습니다.</p>
+                      <p className="text-sm leading-6 text-muted-foreground"><strong className="text-foreground">추천 근거:</strong> 개인 식별자와 측정값은 제외하고, {fitnessDataset.recordsWithPrescription.toLocaleString('ko-KR')}건의 처방 보유 기록을 연령구분별로 집계했습니다. 선택 생활권은 원본 센터 주소와 매칭했습니다.</p>
                       <Button asChild variant="outline" className="rounded-xl bg-white"><a href={mapHref} target="_blank" rel="noreferrer">지도에서 위치 보기 <ExternalLink /></a></Button>
                     </div>
                   </article>
                   <article className="rounded-3xl border border-[#dce6e1] bg-card p-5 shadow-sm sm:p-6">
-                    <div className="mb-4"><p className="text-sm font-bold text-primary">생활권 주변 공공 거점</p><h3 className="mt-1 text-xl font-black">확인 가능한 체력인증센터</h3></div>
-                    <div className="grid gap-3 md:grid-cols-3">{Object.entries(areas).map(([name, item]) => <a key={name} href={`https://map.naver.com/p/search/${encodeURIComponent(item.address)}`} target="_blank" rel="noreferrer" className={`rounded-2xl border p-4 transition hover:-translate-y-0.5 hover:shadow-md ${name === area ? 'border-primary bg-[#edf7f2]' : 'border-[#dce6e1] bg-[#f9fbfa]'}`}><div className="flex items-center justify-between gap-2"><Badge variant="outline">서울 {name}</Badge><ExternalLink className="size-4 text-muted-foreground" /></div><p className="mt-3 font-black">{item.center}</p><p className="mt-2 text-xs leading-5 text-muted-foreground">{item.address}<br />{item.phone}</p></a>)}</div>
+                    <div className="mb-4 flex flex-wrap items-end justify-between gap-3"><div><p className="text-sm font-bold text-primary">전국체육시설현황 실제 연결</p><h3 className="mt-1 text-xl font-black">서울 {area} 대표 체육시설</h3></div><Badge variant="outline">원본 153,514행 검증</Badge></div>
+                    <div className="grid gap-3 md:grid-cols-3">{localFacilities.slice(0, 6).map((item) => <a key={`${item.name}-${item.address}`} href={`https://map.naver.com/p/search/${encodeURIComponent(item.address)}`} target="_blank" rel="noreferrer" className="rounded-2xl border border-[#dce6e1] bg-[#f9fbfa] p-4 transition hover:-translate-y-0.5 hover:border-primary hover:shadow-md"><div className="flex items-center justify-between gap-2"><Badge variant="outline">{item.type || '체육시설'}</Badge><ExternalLink className="size-4 text-muted-foreground" /></div><p className="mt-3 font-black">{item.name}</p><p className="mt-2 text-xs leading-5 text-muted-foreground">{item.address}{item.phone ? <><br />{item.phone}</> : null}</p></a>)}</div>
+                    <p className="mt-4 text-xs leading-5 text-muted-foreground">지역별 시설 유형의 다양성, 좌표·연락처 보유 여부를 기준으로 최대 12개 대표시설을 추출했습니다. 지도 링크는 시설 주소를 기준으로 연결됩니다.</p>
                   </article>
                 </div> : null}
               </section>
@@ -190,13 +214,14 @@ export default function Home() {
           <TabsContent value="region">
             <section className="rounded-3xl border border-[#dce6e1] bg-card p-6 shadow-sm sm:p-8">
               <div className="grid gap-8 lg:grid-cols-[1fr_1.15fr]">
-                <div><Badge variant="secondary" className="bg-[#e8f3ee] text-primary">기관용 분석 화면</Badge><h2 className="mt-4 text-3xl font-black tracking-[-0.045em]">수요와 공급을 함께 보는<br />지역 체육 인사이트</h2><p className="mt-4 max-w-lg leading-7 text-muted-foreground">체육생활이용정보의 시군구별 인구·시설 수·인당 시설 순위를 결합해, 생활체육 기반이 상대적으로 부족한 지역과 종목을 탐색하는 화면입니다.</p><div className="mt-6 rounded-2xl border border-dashed border-[#aac9bd] bg-[#f7faf8] p-4 text-sm leading-6 text-muted-foreground"><strong className="text-foreground">데이터 정직성 안내:</strong> 현재 화면은 분석 항목과 의사결정 흐름을 보여주는 시제품입니다. 실제 지역별 수치는 원본 CSV 검증·전처리 후 표시합니다.</div></div>
+                <div><Badge variant="secondary" className="bg-[#e8f3ee] text-primary">체육생활이용정보 실제 연결</Badge><h2 className="mt-4 text-3xl font-black tracking-[-0.045em]">서울 {area}의 수요와 공급을<br />실제 수치로 비교</h2><p className="mt-4 max-w-lg leading-7 text-muted-foreground">2026년 6월 기준 인구·주요 수요종목별 시설 수·인당 시설 순위를 연결했습니다. 시설 수가 적고 인당 시설 순위가 낮은 종목을 확충 검토 대상으로 활용할 수 있습니다.</p><div className="mt-6 grid grid-cols-2 gap-3"><div className="rounded-2xl bg-[#f7faf8] p-4"><p className="text-xs font-bold text-muted-foreground">지역 인구</p><p className="mt-1 text-2xl font-black">{regionInsight?.population.toLocaleString('ko-KR') ?? '-'}명</p></div><div className="rounded-2xl bg-[#f7faf8] p-4"><p className="text-xs font-bold text-muted-foreground">비교 종목</p><p className="mt-1 text-2xl font-black">{regionInsight?.demands.length ?? 0}개</p></div></div><p className="mt-4 text-xs text-muted-foreground">원본 기준월 {regionDataset.sourceBaseMonth.slice(0, 4)}.{regionDataset.sourceBaseMonth.slice(4)} · 원본 154,870행 검증</p></div>
                 <div className="rounded-3xl bg-[#123d31] p-6 text-white sm:p-8">
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#83e6c1]">Analysis framework</p><h3 className="mt-2 text-xl font-black">확충 우선지역 도출 구조</h3>
-                  <div className="mt-6 grid gap-3 sm:grid-cols-2">{insightFields.map((item, index) => <div key={item.label} className="rounded-2xl border border-white/10 bg-white/5 p-4"><span className="text-xs font-black text-[#83e6c1]">0{index + 1}</span><p className="mt-2 font-extrabold">{item.label}</p><p className="mt-1 text-xs leading-5 text-white/60">{item.detail}</p></div>)}</div>
-                  <div className="mt-4 flex items-center gap-3 rounded-2xl bg-[#39b98d] px-4 py-3 text-sm font-black text-[#0d362b]"><BarChart3 className="size-5" /> 수요 대비 공급 취약지역·종목 우선 검토</div>
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#83e6c1]">Actual data · 서울 {area}</p><h3 className="mt-2 text-xl font-black">주요 수요종목별 시설 수</h3>
+                  <div className="mt-6 space-y-3">{regionInsight?.demands.map((item) => <div key={item.category}><div className="mb-1.5 flex items-center justify-between gap-3 text-xs"><span className="truncate font-bold">{item.facility} <span className="text-white/45">· {item.category.replace('자주이용하는 ', '')}</span></span><span className="shrink-0 font-black text-[#83e6c1]">{item.count.toLocaleString('ko-KR')}개</span></div><div className="h-2 overflow-hidden rounded-full bg-white/10"><div className="h-full rounded-full bg-[#55d2a6]" style={{ width: `${Math.max((item.count / maximumFacilityCount) * 100, 2)}%` }} /></div></div>)}</div>
+                  <div className="mt-5 rounded-2xl border border-white/10 bg-white/5 p-4 text-xs leading-5 text-white/65">인당 시설 수와 전국 순위는 원본 데이터에 함께 보존되어 있으며, 후속 정책 분석 화면의 취약지역 판정 변수로 사용합니다.</div>
                 </div>
               </div>
+              <div className="mt-6 rounded-2xl border border-[#dce6e1] bg-[#f9fbfa] p-4 text-sm"><strong>개방학교 데이터 연결:</strong> 서울 {area}에서 확인된 개방학교 체육시설은 {localSchools.length}곳입니다. {localSchools.length === 0 ? '해당 원본(2017년 기준)에 등록된 시설이 없어 0으로 표시합니다.' : localSchools.slice(0, 3).map((item) => item.name).join(', ')}</div>
             </section>
           </TabsContent>
 
