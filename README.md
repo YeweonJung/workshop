@@ -1,5 +1,11 @@
 # Workshop
 
+## iM ACT Loan Demo
+
+**[iM ACT Loan 성장금융 데모 열기](https://yeweonjung.github.io/workshop/im-act-loan-demo.html)**
+
+소상공인의 대출 제약요인을 진단하고, 맞춤 개선과제 실행과 성과검증을 거쳐 금융 재평가 자료로 연결하는 공모전용 인터랙티브 프로토타입입니다. 모든 사업자·금융 수치는 합성데이터입니다.
+
 ## Desktop Pet for Windows
 
 [![Download for Windows](https://img.shields.io/badge/Download-Windows%20Installer-0078D4?style=for-the-badge&logo=windows)](https://github.com/YeweonJung/workshop/releases/latest/download/Install-DesktopPet.cmd)
