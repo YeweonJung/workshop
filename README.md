@@ -41,3 +41,6 @@ guide in english -> how to install
 가이드라인 한국어버전
 
 ## https://yeweonjung.github.io/workshop/ 
+
+## https://html-preview.github.io/?url=https://github.com/YeweonJung/workshop/blob/main/public/im-act-loan-demo.html
+(iM뱅크) 2026 AI Blockchain 경진대회
