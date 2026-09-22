@@ -47,3 +47,6 @@ guide in english -> how to install
 
 ## https://yeweonjung.github.io/workshop/linkcure_proposal.html
 의료사회복지 공모전 개선안
+
+## https://yeweonjung.github.io/workshop/healthcare-workflow-research.html
+의료사회복지 공모전 조사한 내용에 대한 보고서
