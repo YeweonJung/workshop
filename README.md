@@ -44,3 +44,6 @@ guide in english -> how to install
 
 ## https://html-preview.github.io/?url=https://github.com/YeweonJung/workshop/blob/main/public/im-act-loan-demo.html
 (iM뱅크) 2026 AI Blockchain 경진대회
+
+## https://yeweonjung.github.io/workshop/linkcure_proposal.html
+의료사회복지 공모전 개선안
